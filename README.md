@@ -11,6 +11,11 @@ Mitarbeiter erreichbar. Der Katalog stellt bereits geschätzte Aufgaben zur
 Verfügung, die der Mitarbeiter schnell und einfach zu einer Kalkulation 
 hinzufügen kann, ohne dabei permanent andere Mitarbeiter einbeziehen zu müssen. 
 
+## Systemanforderungen
+
+- PHP 5.5
+- MySQL 5.0
+
 ## ToDos
 
 - Im Gespräch mit den Mitarbeitern herausfinden, welche genauen Anforderungen 
