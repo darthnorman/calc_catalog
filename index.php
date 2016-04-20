@@ -1,20 +1,13 @@
 <?php
 
-require_once "includes/main.php";
+require_once "Classes/main.php";
 
-try {
+if (isset($_GET['controller']) && isset($_GET['action'])) {
+	$controller = $_GET['controller'];
+	$action     = $_GET['action'];
+} else {
+	$controller = 'pages';
+	$action     = 'home';
+}
 
-	if($_GET['category']){
-		$c = new CategoryController();
-	}
-	else if(empty($_GET)){
-		$c = new HomeController();
-	}
-	else throw new Exception('Wrong page!');
-	
-	$c->handleRequest();
-}
-catch(Exception $e) {
-	// Display error page using the "render()" helper function:
-	render('error',array('message'=>$e->getMessage()));
-}
+require_once "Classes/Views/layout.php";

@@ -1,10 +1,9 @@
-<?php
+<?php header("HTTP/1.0 404 Not Found") ?>
 
-header("HTTP/1.0 404 Not Found");
-render('_header',array('title'=>'Error'))
-
+<div class="alert alert-danger" role="alert">
+<?php 
+echo '<p><strong>Fehler!</strong></p>';
+echo $controller;
+echo $action;
 ?>
-
-<p><?php echo $message?></p>
-
-<?php render('_footer')?>
+</div>

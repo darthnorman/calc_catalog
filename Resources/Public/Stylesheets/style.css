@@ -110,15 +110,15 @@ img.rounded,
 
 /* tables */
 table.table-sort thead tr .header {
-	background-image: url(../img/bg.gif);
+	background-image: url(../Images/bg.gif);
 	background-repeat: no-repeat;
 	background-position: center left;
 	cursor: pointer;
 	padding-left: 20px;
 }
 table.table-sort thead tr .headerSortUp {
-	background-image: url(../img/asc.gif);
+	background-image: url(../Images/asc.gif);
 }
 table.table-sort thead tr .headerSortDown {
-	background-image: url(../img/desc.gif);
+	background-image: url(../Images/desc.gif);
 }
