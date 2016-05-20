@@ -3,9 +3,13 @@
 	<form class="filterform center-block">
 		<div class="input-group input-group-lg">
 			<div class="input-group-addon"><span class="glyphicon glyphicon-search"></span></div>
-			<input class="search form-control" placeholder="Filter&hellip;" type="text"/>
+			<span class="searchclear glyphicon glyphicon-remove-circle"></span>
+			<input class="search form-control" placeholder="Filter nach Name oder Kategorie" type="text"/>
 		</div>
 	</form>
+	<div class="text-center">
+		<a class="btn btn-success" href="/?controller=item&action=add"><span class="glyphicon glyphicon-plus"></span> Position hinzufügen</a>
+	</div>
 	<div class="table-responsive">
 		<table class="table table-striped table-hover table-sort">
 			<thead>
@@ -30,14 +34,14 @@
 						<?php echo nl2br($item->description) ?>
 					</td>
 					<td>
-				    	<?php echo pt($item->tmin) ?>
-				    </td>
-				    <td>
-				    	<?php echo pt($item->tmax) ?>
-				    </td>
-				    <td class="category">
-				    	<?php echo $item->getCategory($item->category)->name ?>
-				    </td>
+						<?php echo pt($item->tmin) ?>
+					</td>
+					<td>
+						<?php echo pt($item->tmax) ?>
+					</td>
+					<td class="category">
+						<?php echo $item->getCategory($item->category)->name ?>
+					</td>
 				</tr>
 				<?php } ?>
 			</tbody>
@@ -50,5 +54,6 @@
 		</script>
 	</div>
 </div>
-
-
+<div class="text-center">
+	<a class="btn btn-success" href="/?controller=item&action=add"><span class="glyphicon glyphicon-plus"></span> Position hinzufügen</a>
+</div>

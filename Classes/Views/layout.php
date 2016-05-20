@@ -11,7 +11,8 @@
 	<link href="/Resources/Public/Stylesheets/bootstrap.min.css" rel="stylesheet">
 	<link href="/Resources/Public/Stylesheets/bootstrap-theme.min.css" rel="stylesheet">
 	<link href="/Resources/Public/Stylesheets/style.css" rel="stylesheet">
-
+    
+    <link rel="icon" href="/Resources/Public/Images/dmk_e-business_logo.png">
 	<!-- JS -->
 	<script src="/Resources/Public/Scripts/list.min.js"></script>
 </head>
@@ -54,9 +55,9 @@
 					//render Page Content
 					require_once "Classes/router.php"; 
 				?>
-			
+				<hr>
 				<p class="text-right copy">
-					<small>v<?php echo $GLOBALS['version']?></small>
+					<a href="http://creativecommons.org/publicdomain/zero/1.0/deed.de" target="_blank"><small>CC0</a> <a href="mailto:norman.paschke@dmk-ebusiness.de">Norman Paschke</a> &ndash; Version <?php echo $GLOBALS['version']?></small>
 				</p>
 			</div>
 		</div>

@@ -4,17 +4,8 @@
 
 /* Move down content because we have a fixed navbar that is 50px tall */
 body {
+	min-width: 320px;
 	padding-top: 50px;
-}
-
-
-/*
- * Global add-ons
- */
-
-.sub-header {
-	padding-bottom: 10px;
-	border-bottom: 1px solid #eee;
 }
 
 /*
@@ -73,6 +64,13 @@ body {
 /*
  * Main content
  */
+.sub-header {
+	padding-bottom: 10px;
+	border-bottom: 1px solid #eee;
+}
+h1 {
+	font-size: 24px;
+}
 a.edit span {
 	color: #000;
 	opacity: 0;
@@ -93,6 +91,7 @@ a.edit:hover {
 		padding-left: 40px;
 	}
 	h1 {
+		font-size: 36px;
 		text-align: center;
 	}
 }
@@ -121,7 +120,7 @@ textarea {
 	font-size: 24px;
 	cursor: pointer;
 	color: #ccc;
-	z-index: 3;
+	z-index: 5;
 }
 
 /*

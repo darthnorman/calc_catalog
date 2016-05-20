@@ -15,12 +15,17 @@ $(document).ready(function() {
 		var positionsPointIndex = $('.positionPoint').length+1;
 		$(this).before($('<div class="positionPoint panel panel-default"><div class="panel-body"><h5>Positionspunkt ' + positionsPointIndex + ':</h5></div></div>'));
 	});
+	if (!$('input.search').val() == '') {
+		$('.searchclear').show();
+	}
 	$('input.search').on('input',function() {
 		if (!$(this).val() == '') {
 			$('.searchclear').show();
+		} else {
+			clearsearch();
 		}
 	});
-	$('filterform').on('click','.searchclear',function () {
+	$('.filterform').on('click','.searchclear',function () {
 		clearsearch();
 	});
 	$('input.search').keypress(function(e) {

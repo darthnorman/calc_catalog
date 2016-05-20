@@ -24,9 +24,9 @@ CREATE TABLE `status` (
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4;
 
-INSERT INTO `status` VALUES(1, 'neu', 'new');
-INSERT INTO `status` VALUES(2, 'in Bearbeitung', 'working');
-INSERT INTO `status` VALUES(3, 'abgeschlossen', 'done');
+INSERT INTO `status` VALUES(1, 'neu', 'warning');
+INSERT INTO `status` VALUES(2, 'laufend', 'success');
+INSERT INTO `status` VALUES(3, 'abgeschlossen', 'primary');
 
 --
 -- Table 'calculation'

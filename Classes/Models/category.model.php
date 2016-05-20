@@ -34,6 +34,20 @@ class Category {
 		$category = $st->fetch();
 		return $category;
 	}
+	
+	public static function getElementCount($id) {
+		global $db;
+	
+		$id = intval($id);
+	
+		$st = $db->prepare("SELECT id FROM item WHERE category=:id");
+	
+		$st->execute(array('id' => $id));
+	
+		// Returns Customer of a single Calculation object:
+		$count = $st->rowCount();
+		return $count;
+	}
 }
 
 ?>
