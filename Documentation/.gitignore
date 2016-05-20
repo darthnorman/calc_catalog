@@ -124,6 +124,6 @@ sympy-plots-for-*.tex/
 # WinEdt
 *.bak
 *.sav
-/tmp/
 /document.pdf
 /Projektdokumentation.pdf
+/tmp/
