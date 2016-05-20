@@ -15,4 +15,22 @@ $(document).ready(function() {
 		var positionsPointIndex = $('.positionPoint').length+1;
 		$(this).before($('<div class="positionPoint panel panel-default"><div class="panel-body"><h5>Positionspunkt ' + positionsPointIndex + ':</h5></div></div>'));
 	});
+	$('input.search').on('input',function() {
+		if (!$(this).val() == '') {
+			$('.searchclear').show();
+		}
+	});
+	$('filterform').on('click','.searchclear',function () {
+		clearsearch();
+	});
+	$('input.search').keypress(function(e) {
+		if (e.keyCode == 27) {
+			clearsearch();
+		}
+	});
 });
+
+function clearsearch() {
+    $('input.search').val('');
+    $('.searchclear').hide();
+}

@@ -30,11 +30,6 @@ function pageHeader($title = '', $icon = '') {
 	return $pageHeader;
 }
 
-// status formatting
-function formatStatus($statusID) {
-	
-}
-
 // tax calculation
 function getNetto($brutto) {
 	$netto = $brutto + ($brutto * ($GLOBALS['tax']/100));
@@ -45,4 +40,16 @@ function getNetto($brutto) {
 function formatCurrency($prize) {
 	$formatedPrize = round($prize, 2).'&thinsp;&euro;';
 	return $formatedPrize;
+}
+
+// person days formatting
+function pt($number) {
+	echo rtrim(number_format($number,3,',',''),'0'.',');
+	return;	
+}
+
+// time stamp into readable (german) date
+function dateFormat($timestamp) {
+	 echo date('d.m.Y H:i:s', $timestamp);
+	 return;
 }

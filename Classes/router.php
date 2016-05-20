@@ -15,17 +15,33 @@ function render($controller, $action) {
 			require_once('Classes/Models/status.model.php');
 			$controller = new StatusController();
 		break;
-		case 'costumer':
+		case 'category':
 			// we need the model to query the database later in the controller
-			require_once('Classes/Models/costumer.model.php');
-			$controller = new CostumerController();
+			require_once('Classes/Models/category.model.php');
+			$controller = new CategoryController();
+			break;
+		case 'item':
+			// we need the model to query the database later in the controller
+			require_once('Classes/Models/item.model.php');
+			$controller = new ItemController();
+		break;
+		case 'customer':
+			// we need the model to query the database later in the controller
+			require_once('Classes/Models/customer.model.php');
+			$controller = new CustomerController();
 		break;
 	}
 	$controller->{ $action }();
 }
 
 // we're adding an entry for the new controller and its actions
-$controllers = array('pages' => ['home', 'error'],'calculation' => ['index', 'show']);
+$controllers = array(
+	'pages' => ['home', 'error'],
+	'calculation' => ['index', 'show'],
+	'item' => ['index', 'show'],
+	'category' => ['index', 'show', 'datalist'],
+	'customer' => ['index', 'show']
+);
 
 if (array_key_exists($controller, $controllers)) {
 	if (in_array($action, $controllers[$controller])) {
