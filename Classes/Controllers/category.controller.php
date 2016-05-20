@@ -2,11 +2,20 @@
 
 /* This controller renders the calculation pages */
 
-class CalculationController {
+class CategoryController {
+	
 	public function index() {
-		$calculations = Calculation::all();
-		require_once "Classes/Views/listCalculation.php";
+		$categories = Category::all();
+		require_once "Classes/Views/listCategory.php";
 	}
+	
+	public function datalist() {
+		$categories = Category::all();
+		if (isset($_GET['id']))
+			$currentId = $_GET['id'];
+		require_once "Classes/Views/datalistCategory.php";
+	}
+	
 	public function show() {
 		// we expect a url of form ?controller=posts&action=show&id=x
 		// without an id we just redirect to the error page as we need the post id to find it in the database
@@ -14,8 +23,8 @@ class CalculationController {
 			return call('pages', 'error');
 	
 		// we use the given id to get the right post
-		$calculation = Calculation::show($_GET['id']);
-		require_once "Classes/Views/showCalculation.php";
+		$category = Category::show($_GET['id']);
+		require_once "Classes/Views/showCategory.php";
 	}
 }
 

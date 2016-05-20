@@ -44,23 +44,23 @@ class Calculation {
 		
 		$st->execute(array('id' => $id));
 		
-		// Returns a single Calculation object:
+		// Returns Status of a single Calculation object:
 		$status = $st->fetch(PDO::FETCH_OBJ);
 		return $status;
 	}
 	
-	public static function getKunde($id) {
+	public static function getCustomer($id) {
 		global $db;
 	
 		$id = intval($id);
 	
-		$st = $db->prepare("SELECT * FROM kunde WHERE id=:id");
+		$st = $db->prepare("SELECT * FROM customer WHERE id=:id");
 	
 		$st->execute(array('id' => $id));
-	
-		// Returns a single Calculation object:
-		$status = $st->fetch(PDO::FETCH_OBJ);
-		return $status;
+		
+		// Returns Customer of a single Calculation object:
+		$customer = $st->fetch(PDO::FETCH_OBJ);
+		return $customer;
 	}
 }
 

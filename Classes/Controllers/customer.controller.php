@@ -2,10 +2,10 @@
 
 /* This controller renders the calculation pages */
 
-class CalculationController {
+class CustomerController {
 	public function index() {
-		$calculations = Calculation::all();
-		require_once "Classes/Views/listCalculation.php";
+		$customers = Customer::all();
+		require_once "Classes/Views/listCustomer.php";
 	}
 	public function show() {
 		// we expect a url of form ?controller=posts&action=show&id=x
@@ -14,8 +14,8 @@ class CalculationController {
 			return call('pages', 'error');
 	
 		// we use the given id to get the right post
-		$calculation = Calculation::show($_GET['id']);
-		require_once "Classes/Views/showCalculation.php";
+		$customer = Customer::show($_GET['id']);
+		require_once "Classes/Views/showCustomer.php";
 	}
 }
 

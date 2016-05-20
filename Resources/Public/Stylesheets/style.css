@@ -4,7 +4,7 @@
 
 /* Move down content because we have a fixed navbar that is 50px tall */
 body {
-  padding-top: 50px;
+	padding-top: 50px;
 }
 
 
@@ -13,8 +13,8 @@ body {
  */
 
 .sub-header {
-  padding-bottom: 10px;
-  border-bottom: 1px solid #eee;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #eee;
 }
 
 /*
@@ -22,7 +22,7 @@ body {
  * Hide default border to remove 1px line.
  */
 .navbar-fixed-top {
-  border: 0;
+	border: 0;
 }
 
 /*
@@ -31,81 +31,120 @@ body {
 
 /* Hide for mobile, show later */
 .sidebar {
-  display: none;
+	display: none;
+}
+.copy {
+	color: #ccc;
 }
 @media (min-width: 768px) {
-  .sidebar {
-    position: fixed;
-    top: 51px;
-    bottom: 0;
-    left: 0;
-    z-index: 1000;
-    display: block;
-    padding: 20px;
-    overflow-x: hidden;
-    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-    background-color: #f5f5f5;
-    border-right: 1px solid #eee;
-  }
+	.sidebar {
+		position: fixed;
+		top: 51px;
+		bottom: 0;
+		left: 0;
+		z-index: 1000;
+		display: block;
+		padding: 20px;
+		overflow-x: hidden;
+		overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+		background-color: #f5f5f5;
+		border-right: 1px solid #eee;
+	}
 }
 
 /* Sidebar navigation */
 .nav-sidebar {
-  margin-right: -21px; /* 20px padding + 1px border */
-  margin-bottom: 20px;
-  margin-left: -20px;
+	margin-right: -21px; /* 20px padding + 1px border */
+	margin-bottom: 20px;
+	margin-left: -20px;
 }
 .nav-sidebar > li > a {
-  padding-right: 20px;
-  padding-left: 20px;
+	padding-right: 20px;
+	padding-left: 20px;
 }
 .nav-sidebar > .active > a,
 .nav-sidebar > .active > a:hover,
 .nav-sidebar > .active > a:focus {
-  color: #fff;
-  background-color: #428bca;
+	color: #fff;
+	background-color: #428bca;
 }
 
 
 /*
  * Main content
  */
-
+a.edit span {
+	color: #000;
+	opacity: 0;
+	transition: all 0.25s;
+}
+a.edit:hover span {
+	opacity: 1;	
+}
+a.edit:hover {
+	text-decoration: none;
+}
 .main {
-  padding: 20px;
+	padding: 20px;
 }
 @media (min-width: 768px) {
-  .main {
-    padding-right: 40px;
-    padding-left: 40px;
-  }
+	.main {
+		padding-right: 40px;
+		padding-left: 40px;
+	}
+	h1 {
+		text-align: center;
+	}
 }
 .main .page-header {
-  margin-top: 0;
+	margin-top: 0;
 }
 
+/*
+ * Forms
+ */
+.filterform {
+	margin-bottom: 20px;
+	max-width: 640px;
+}
+textarea {
+	resize: vertical;
+}
+.searchclear {
+	display: none;
+	position: absolute;
+	right: 10px;
+	top: 0;
+	bottom: 0;
+	height: 24px;
+	margin: auto;
+	font-size: 24px;
+	cursor: pointer;
+	color: #ccc;
+	z-index: 3;
+}
 
 /*
  * Placeholder dashboard ideas
  */
 
 .placeholders {
-  margin-bottom: 30px;
-  text-align: center;
+	margin-bottom: 30px;
+	text-align: center;
 }
 .placeholders h4 {
-  margin-bottom: 0;
+	margin-bottom: 0;
 }
 .placeholder {
-  margin-bottom: 20px;
+	margin-bottom: 20px;
 }
 .placeholder img {
-  display: inline-block;
+	display: inline-block;
 }
 
 img.rounded,
 .placeholder img {
-  border-radius: 50%;
+	border-radius: 50%;
 }
 
 /* tables */

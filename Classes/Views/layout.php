@@ -19,22 +19,48 @@
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="/"><?php echo $GLOBALS['defaultTitle']?> <small>v<?php echo $GLOBALS['version']?></small></a>
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/"><img alt="DMK" src="/Resources/Public/Images/dmk_e-business_logo.png" width="20" height="20"/></a>
+				<a class="navbar-brand" href="/"><?php echo $GLOBALS['defaultTitle']?></a>
+			</div>
+			<div class="collapse navbar-collapse" id="navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li>
+						<a href="/?controller=calculation&action=index">Kalkulationen</a>
+					</li>
+					<li>
+						<a href="/?controller=item&action=index">Kalkulations&shy;positionen</a>
+					</li>
+					<li>
+						<a href="/?controller=customer&action=index">Kunden</a>
+					</li>
+					<li>
+						<a href="/?controller=category&action=index">Kategorien</a>
+					</li>
+				</ul>
 			</div>
 		</div>
 	</nav>
 	<main class="container-fluid">
 		<div class="row">
 			<div class="col-sm-12 main">
-
-			<?php require_once "Classes/router.php" ?>
-
+			
+				<?php 
+					//render Page Content
+					require_once "Classes/router.php"; 
+				?>
+			
+				<p class="text-right copy">
+					<small>v<?php echo $GLOBALS['version']?></small>
+				</p>
 			</div>
 		</div>
 	</main>
-	<footer>
-	
-	</footer>
 	<!-- Bootstrap core JavaScript
 	================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
