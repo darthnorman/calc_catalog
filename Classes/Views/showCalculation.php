@@ -47,4 +47,5 @@
 			<a class="btn btn-default pull-right" href="/?controller=calculation&action=index" role="button"><span class="glyphicon glyphicon-remove"></span> Abbrechen</a>
 		</div>
 	</div>
+	#TODO: Liste die Position, Möglichkeit neue Position hinzuzufügen
 </form>

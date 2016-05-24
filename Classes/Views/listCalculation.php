@@ -28,8 +28,9 @@
 						<?php echo dateFormat($calculation->tstamp); ?>
 					</td>
 					<td class="title">
-						<a href="?controller=calculation&action=show&id=<?php echo $calculation->id ?>">
-						<?php echo $calculation->name ?>
+						<a class="edit" title="Bearbeiten" href="?controller=calculation&action=show&id=<?php echo $calculation->id ?>">
+							<?php echo $calculation->name ?>
+							<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 						</a>
 					</td>
 					<td class="customer">

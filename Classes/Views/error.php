@@ -3,7 +3,5 @@
 <div class="alert alert-danger" role="alert">
 <?php 
 echo '<p><strong>Fehler!</strong></p>';
-echo $controller;
-echo $action;
 ?>
 </div>
