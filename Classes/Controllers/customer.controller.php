@@ -16,14 +16,31 @@ class CustomerController {
 	}
 	
 	public function show() {
-		// we expect a url of form ?controller=posts&action=show&id=x
-		// without an id we just redirect to the error page as we need the post id to find it in the database
-		if (!isset($_GET['id']))
-			return render('pages', 'error');
-	
-		// we use the given id to get the right post
-		$customer = Customer::show($_GET['id']);
-		require_once "Classes/Views/showCustomer.php";
+		//do we have an ID?
+		if (isset($_GET['id'])) {
+			//was the form submitted?
+			if ($_POST['submit']) {
+				// if id is valid -> edit()
+				if (is_numeric($_POST['id'])) {
+					$customer = Customer::edit($_GET['id']);
+					require_once "Classes/Views/showCustomer.php";
+				} else {
+					//ID is not valid? -> error 
+					return render('pages', 'error');
+					$message = 'ID ist nicht valide.';
+				}
+			} else {
+				if (is_numeric($_GET['id']) && $_GET['id'] > 0) {
+					//no submit? -> show()
+					$customer = Customer::show($_GET['id']);
+					require_once "Classes/Views/showCustomer.php";
+				}
+			}
+		} else {
+			//no id? -> create()
+			Customer::create();
+			require_once "Classes/Views/addCustomer.php";
+		}
 	}
 }
 ?>

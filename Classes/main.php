@@ -1,5 +1,11 @@
 <?php
 
+// version
+$version = 0.1;
+
+// page title default
+$defaultTitle = 'Kalkulationskatalog';
+
 /* Includes */
 
 require_once "Classes/config.php";
@@ -18,11 +24,3 @@ require_once "Classes/Controllers/item.controller.php";
 require_once "Classes/Controllers/customer.controller.php";
 require_once "Classes/Controllers/company.controller.php";
 require_once "Classes/Controllers/status.controller.php";
-
-
-// Caching
-
-header('Cache-Control: max-age=3600, public');
-header('Pragma: cache');
-header("Last-Modified: ".gmdate("D, d M Y H:i:s",time())." GMT");
-header("Expires: ".gmdate("D, d M Y H:i:s",time()+3600)." GMT");

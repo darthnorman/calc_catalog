@@ -34,6 +34,28 @@ class Customer {
 		$customer = $st->fetch();
 		return $customer;
 	}
+	
+	public static function edit($id) {
+		$id = $_POST['id'];
+		$name = htmlentities($_POST['name'], ENT_QUOTES);
+		$address = htmlentities($_POST['address'], ENT_QUOTES);
+
+		if ($name == '' || $address == '') {
+			echo $message = 'Nicht alle Felder waren ausgefüllt.';
+			return render('pages', 'error');
+		} else {
+			global $db;
+			
+			$id = intval($id);
+			
+			$st = $db->prepare("UPDATE customer SET name=:name, address=:address WHERE id=:id");
+			
+			$st->execute(array('id' => $id, 'name' => $name, 'address' => $address));
+			
+			message('success','Eintrag erfolgreich gespeichert.');
+			return Customer::show($id);
+		}
+	}
 }
 
 ?>

@@ -54,3 +54,9 @@ function dateFormat($timestamp) {
 	 echo date('d.m.Y H:i:s', $timestamp);
 	 return;
 }
+
+//flash message
+function message($class, $text) {
+	echo '<div class="alert alert-'.$class.'" role="alert"><p>'.$text.'</p></div>';
+	return;
+}
