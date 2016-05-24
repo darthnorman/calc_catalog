@@ -14,7 +14,7 @@
 		<table class="table table-striped table-hover table-sort">
 			<thead>
 				<tr>
-					<th>Name</th>
+					<th>Bezeichnung</th>
 					<th>Anzahl Kalkulationspositionen</th>
 				</tr>
 			</thead>
@@ -28,7 +28,7 @@
 						</a>
 					</td>
 					<td class="category">
-						<?php echo $category->getElementCount($category->id) ?>
+						<?php echo $category->getItemCount($category->id) ?>
 					</td>
 				</tr>
 				<?php } ?>

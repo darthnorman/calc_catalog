@@ -1,11 +1,5 @@
 
-<?php 
-if ($company->name == '') {
-	echo pageHeader('Firma', 'glyphicon-list-alt');
-} else {
-	echo pageHeader($company->name, 'glyphicon-list-alt');
-}
-?>
+<?php echo pageHeader('Einstellungen', 'glyphicon-cog') ?>
 
 <form class="form-horizontal" action="/?controller=company&action=show&id=<?php echo $company->id ?>" method="POST">
 	<input type="hidden" name="id" value="1" />

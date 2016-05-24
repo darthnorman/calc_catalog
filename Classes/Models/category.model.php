@@ -35,7 +35,7 @@ class Category {
 		return $category;
 	}
 	
-	public static function getElementCount($id) {
+	public static function getItemCount($id) {
 		global $db;
 	
 		$id = intval($id);
@@ -47,6 +47,20 @@ class Category {
 		// Returns Customer of a single Calculation object:
 		$count = $st->rowCount();
 		return $count;
+	}
+	
+	public static function getItems($id) {
+		global $db;
+	
+		$id = intval($id);
+	
+		$st = $db->prepare("SELECT id,name FROM item WHERE category=:id");
+	
+		$st->execute(array('id' => $id));
+	
+		// Returns Customer of a single Calculation object:
+		$items = $st->fetchAll(PDO::FETCH_CLASS, "Item");
+		return $items;
 	}
 }
 

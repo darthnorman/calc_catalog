@@ -18,11 +18,16 @@
 				<li <?php if($controller == 'item') echo 'class="active"' ?>>
 					<a href="/?controller=item&action=index">Kalkulations&shy;positionen</a>
 				</li>
+				<li <?php if($controller == 'category') echo 'class="active"' ?>>
+					<a href="/?controller=category&action=index">Kategorien</a>
+				</li>
 				<li <?php if($controller == 'customer') echo 'class="active"' ?>>
 					<a href="/?controller=customer&action=index">Kunden</a>
 				</li>
-				<li <?php if($controller == 'category') echo 'class="active"' ?>>
-					<a href="/?controller=category&action=index">Kategorien</a>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li <?php if($controller == 'company') echo 'class="active"' ?>>
+					<a href="/?controller=company&action=show"><span class="glyphicon glyphicon-cog" title="Einstellungen"></span></a>
 				</li>
 			</ul>
 		</div>
