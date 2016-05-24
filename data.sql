@@ -1,4 +1,17 @@
 --
+-- Table 'company'
+--
+
+CREATE TABLE `company` (
+  `id` int(6) unsigned NOT NULL auto_increment,
+  `name` varchar(128) collate utf8_unicode_ci NOT NULL,
+  `taxrate` int(3) unsigned NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2;
+
+INSERT INTO `company` VALUES(1, 'DMK E-BUSINESS GmbH', 19);
+
+--
 -- Table 'customer'
 --
 
@@ -38,14 +51,16 @@ CREATE TABLE `calculation` (
   `name` varchar(128) collate utf8_unicode_ci NOT NULL,
   `customer` int(6) unsigned NOT NULL,
   `status` int(6) unsigned NOT NULL,
+  `price_team` float(7,3) unsigned NOT NULL DEFAULT '0',
+  `price_pm` float(7,3) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_customer` FOREIGN KEY (`customer`) REFERENCES customer(`id`),
   CONSTRAINT `fk_status` FOREIGN KEY (`status`) REFERENCES status(`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4;
 
-INSERT INTO `calculation` VALUES(1, 1463756058, 'TYPO3-Landing Page und Online-Payment für den Geschäftsbereich TCC', 1, 1);
-INSERT INTO `calculation` VALUES(2, 1462719258, 'Grillgewinnspiel 2016', 2, 3);
-INSERT INTO `calculation` VALUES(3, 1462200858, 'Vertrieb Fernwärme', 3, 2);
+INSERT INTO `calculation` VALUES(1, 1463756058, 'TYPO3-Landing Page und Online-Payment für den Geschäftsbereich TCC', 1, 1, 500, 700);
+INSERT INTO `calculation` VALUES(2, 1462719258, 'Grillgewinnspiel 2016', 2, 3, 380, 450);
+INSERT INTO `calculation` VALUES(3, 1462200858, 'Vertrieb Fernwärme', 3, 2, 600, 800);
 
 --
 -- Table 'category'

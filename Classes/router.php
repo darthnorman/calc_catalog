@@ -30,6 +30,16 @@ function render($controller, $action) {
 			require_once('Classes/Models/customer.model.php');
 			$controller = new CustomerController();
 		break;
+		case 'company':
+			// we need the model to query the database later in the controller
+			require_once('Classes/Models/company.model.php');
+			$controller = new companyController();
+		break;
+		case 'status':
+			// we need the model to query the database later in the controller
+			require_once('Classes/Models/status.model.php');
+			$controller = new statusController();
+		break;
 	}
 	$controller->{ $action }();
 }
@@ -40,7 +50,9 @@ $controllers = array(
 	'calculation' => ['index', 'show'],
 	'item' => ['index', 'show'],
 	'category' => ['index', 'show', 'datalist'],
-	'customer' => ['index', 'show']
+	'customer' => ['index', 'show', 'datalist'],
+	'company' => ['show'],
+	'status' => ['datalist']
 );
 
 if (array_key_exists($controller, $controllers)) {

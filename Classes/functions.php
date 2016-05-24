@@ -32,13 +32,14 @@ function pageHeader($title = '', $icon = '') {
 
 // tax calculation
 function getNetto($brutto) {
-	$netto = $brutto + ($brutto * ($GLOBALS['tax']/100));
+	$taxrate = Company::getTaxrate();
+	$netto = $brutto + ($brutto * ($taxrate/100));
 	return $netto;
 }
 
 // prize formatting
 function formatCurrency($prize) {
-	$formatedPrize = round($prize, 2).'&thinsp;&euro;';
+	$formatedPrize = round($prize, 2);
 	return $formatedPrize;
 }
 
