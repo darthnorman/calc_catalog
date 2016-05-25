@@ -8,7 +8,7 @@
 		</div>
 	</form>
 	<div class="text-center">
-		<a class="btn btn-success" href="/?controller=customer&action=add"><span class="glyphicon glyphicon-plus"></span> Kunde hinzufügen</a>
+		<a class="btn btn-success" href="/?controller=customer&action=show"><span class="glyphicon glyphicon-plus"></span> Kunde hinzufügen</a>
 	</div>
 	<div class="table-responsive">
 		<table class="table table-striped table-hover table-sort">
@@ -43,5 +43,5 @@
 	</div>
 </div>
 <div class="text-center">
-	<a class="btn btn-success" href="/?controller=customer&action=add"><span class="glyphicon glyphicon-plus"></span> Kunde hinzufügen</a>
+	<a class="btn btn-success" href="/?controller=customer&action=show"><span class="glyphicon glyphicon-plus"></span> Kunde hinzufügen</a>
 </div>

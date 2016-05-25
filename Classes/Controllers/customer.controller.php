@@ -22,12 +22,12 @@ class CustomerController {
 			if ($_POST['submit']) {
 				// if id is valid -> edit()
 				if (is_numeric($_POST['id'])) {
-					$customer = Customer::edit($_GET['id']);
+					$customer = Customer::edit($_POST['id']);
 					require_once "Classes/Views/showCustomer.php";
 				} else {
 					//ID is not valid? -> error 
 					return render('pages', 'error');
-					$message = 'ID ist nicht valide.';
+					message('danger','ID ist nicht valide.');
 				}
 			} else {
 				if (is_numeric($_GET['id']) && $_GET['id'] > 0) {
@@ -37,9 +37,14 @@ class CustomerController {
 				}
 			}
 		} else {
-			//no id? -> create()
-			Customer::create();
-			require_once "Classes/Views/addCustomer.php";
+			if ($_POST['submit']) {
+				//no id? -> create()
+				$customer = Customer::create();
+				require_once "Classes/Views/addCustomer.php";
+			} else {
+				$customer = Customer::show($lastId);
+				require_once "Classes/Views/showCustomer.php";
+			}
 		}
 	}
 }

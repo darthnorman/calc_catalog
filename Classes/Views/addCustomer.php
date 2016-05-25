@@ -1,18 +1,17 @@
 
-<?php echo pageHeader($customer->name, 'glyphicon-list-alt') ?>
+<?php echo pageHeader('Kunden anlegen', 'glyphicon-list-alt') ?>
 
-<form class="form-horizontal" action="/?controller=customer&action=show&id=<?php echo $customer->id ?>" method="POST">
-	<input type="hidden" name="id" value="<?php echo $customer->id ?>" />
+<form class="form-horizontal" action="/?controller=customer&action=show" method="POST">
 	<div class="form-group">
 		<label class="col-sm-3 col-lg-2 control-label" for="customerName">Kundenname</label>
 		<div class="col-sm-8 col-lg-6">
-			<input id="customerName" name="name" class="form-control" autocomplete="off" type="text" value="<?php echo $customer->name ?>" />
+			<input id="customerName" name="name" class="form-control" autocomplete="off" type="text" value="" />
 		</div>
 	</div>
 	<div class="form-group">
 		<label class="col-sm-3 col-lg-2 control-label" for="customerAddress">Adresse</label>
 		<div class="col-sm-8 col-lg-6">
-			<input id="customerAddress" name="address" class="form-control" autocomplete="off" placeholder="Straße Hausnr., PLZ Ort" type="text" value="<?php echo $customer->address ?>" />
+			<input id="customerAddress" name="address" class="form-control" autocomplete="off" placeholder="Straße Hausnr., PLZ Ort" type="text" value="" />
 		</div>
 	</div>
 	<hr>

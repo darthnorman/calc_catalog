@@ -13,7 +13,7 @@
 		<label class="col-sm-3 col-lg-2 control-label" for="companyTaxrate">Mehrwertsteuer</label>
 		<div class="col-sm-5 col-lg-2">
 			<div class="input-group">
-				<input id="companyTaxrate" name="address" class="form-control" type="text" value="<?php echo $company->taxrate ?>" />
+				<input id="companyTaxrate" name="taxrate" class="form-control" type="text" value="<?php echo $company->taxrate ?>" />
 				<div class="input-group-addon">%</div>
 			</div>
 		</div>

@@ -51,8 +51,8 @@ CREATE TABLE `calculation` (
   `name` varchar(128) collate utf8_unicode_ci NOT NULL,
   `customer` int(6) unsigned NOT NULL,
   `status` int(6) unsigned NOT NULL,
-  `price_team` float(7,3) unsigned NOT NULL DEFAULT '0',
-  `price_pm` float(7,3) unsigned NOT NULL DEFAULT '0',
+  `price_team` float(6,2) unsigned NOT NULL DEFAULT '0',
+  `price_pm` float(6,2) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_customer` FOREIGN KEY (`customer`) REFERENCES customer(`id`),
   CONSTRAINT `fk_status` FOREIGN KEY (`status`) REFERENCES status(`id`)

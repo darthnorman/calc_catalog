@@ -36,13 +36,12 @@ class Customer {
 	}
 	
 	public static function edit($id) {
-		$id = $_POST['id'];
 		$name = htmlentities($_POST['name'], ENT_QUOTES);
 		$address = htmlentities($_POST['address'], ENT_QUOTES);
 
 		if ($name == '' || $address == '') {
-			echo $message = 'Nicht alle Felder waren ausgefüllt.';
 			return render('pages', 'error');
+			message('danger','Speichern fehlgeschlagen: Nicht alle Felder waren ausgefüllt.');
 		} else {
 			global $db;
 			
@@ -54,6 +53,29 @@ class Customer {
 			
 			message('success','Eintrag erfolgreich gespeichert.');
 			return Customer::show($id);
+		}
+	}
+	
+	public static function create() {
+		if (isset($_POST['submit'])) {
+			$name = htmlentities($_POST['name'], ENT_QUOTES);
+			$address = htmlentities($_POST['address'], ENT_QUOTES);
+			
+			if ($name == '' || $address == '') {
+				return render('pages', 'error');
+				message('danger','Anlegen fehlgeschlagen: Nicht alle Felder waren ausgefüllt.');
+			} else {
+				global $db;
+				
+				$st = $db->prepare("INSERT INTO customer (name, address) VALUES(:name, :address)");
+				
+				$st->execute(array('name' => $name, 'address' => $address));
+				
+				message('success','Eintrag erfolgreich angelegt.');
+				
+				$lastId = $db->lastInsertId();
+				return Customer::show($lastId);
+			}
 		}
 	}
 }
