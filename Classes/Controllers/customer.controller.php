@@ -27,7 +27,7 @@ class CustomerController {
 				} else {
 					//ID is not valid? -> error 
 					return render('pages', 'error');
-					message('danger','ID ist nicht valide.');
+					message('danger','Speichern fehlgeschlagen: ID ungültig.');
 				}
 			} else {
 				if (is_numeric($_GET['id']) && $_GET['id'] > 0) {
