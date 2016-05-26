@@ -22,9 +22,9 @@ CREATE TABLE `customer` (
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4;
 
-INSERT INTO `customer` VALUES(1, 'von Rundstedt Schweiz AG', 'Kreuzbühlstrasse 20, 8008 Zürich');
-INSERT INTO `customer` VALUES(2, 'WSW Wuppertaler Stadtwerke GmbH', 'Bromberger Str. 39 - 41, 42281 Wuppertal');
-INSERT INTO `customer` VALUES(3, 'tegut... gute Lebensmittel GmbH & Co. KG', 'Gerloser Weg 72, 36039 Fulda');
+INSERT INTO `customer` VALUES(1, 'Mustermann AG', 'Musterstraße 12, 8008 Zürich');
+INSERT INTO `customer` VALUES(2, 'Gaswerke Musterstadt GmbH', 'Straße am Muster 8, 42281 Wuppertal');
+INSERT INTO `customer` VALUES(3, 'Neue Musterfirma GmbH & Co. KG', 'Wegemuster 48, 36039 Fulda');
 
 --
 -- Table 'status'
@@ -58,9 +58,9 @@ CREATE TABLE `calculation` (
   CONSTRAINT `fk_status` FOREIGN KEY (`status`) REFERENCES status(`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4;
 
-INSERT INTO `calculation` VALUES(1, 1463756058, 'TYPO3-Landing Page und Online-Payment für den Geschäftsbereich TCC', 1, 1, 500, 700);
+INSERT INTO `calculation` VALUES(1, 1463756058, 'TYPO3-Landingpage und Online-Payment', 1, 1, 500, 700);
 INSERT INTO `calculation` VALUES(2, 1462719258, 'Grillgewinnspiel 2016', 2, 3, 380, 450);
-INSERT INTO `calculation` VALUES(3, 1462200858, 'Vertrieb Fernwärme', 3, 2, 600, 800);
+INSERT INTO `calculation` VALUES(3, 1462200858, 'Vertrieb Landingpage', 3, 2, 600, 800);
 
 --
 -- Table 'category'
@@ -98,3 +98,24 @@ INSERT INTO `item` VALUES(4, 'Responsive Design', 'Prototypen müssen geräteuna
 INSERT INTO `item` VALUES(5, 'Barrierefreiheit', 'Prototypen sollen sich an BITV-Vorgaben halten und möglichst barrierearm sein.', 2, 4, 2);
 INSERT INTO `item` VALUES(6, 'Solr einrichten', 'Sorl auf Server installieren und grundlegend einrichten.', 3.5, 5, 3);
 INSERT INTO `item` VALUES(7, 'Indexed Search einrichten', 'Die Extension Indexed Search installieren und grundlegend einrichten.', 1, 1.5, 3);
+
+--
+-- Table 'calculation_item_mm'
+--
+
+CREATE TABLE `calculation_item_mm` (
+  `uid_calculation` int(11) unsigned NOT NULL DEFAULT '0',
+  `uid_item` int(11) unsigned NOT NULL DEFAULT '0',
+  CONSTRAINT `fk_calculation` FOREIGN KEY (`uid_calculation`) REFERENCES calculation(`id`),
+  CONSTRAINT `fk_item` FOREIGN KEY (`uid_item`) REFERENCES item(`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+INSERT INTO `calculation_item_mm` (`uid_calculation`, `uid_item`) VALUES(1, 1);
+INSERT INTO `calculation_item_mm` (`uid_calculation`, `uid_item`) VALUES(1, 2);
+INSERT INTO `calculation_item_mm` (`uid_calculation`, `uid_item`) VALUES(1, 4);
+INSERT INTO `calculation_item_mm` (`uid_calculation`, `uid_item`) VALUES(1, 5);
+INSERT INTO `calculation_item_mm` (`uid_calculation`, `uid_item`) VALUES(2, 3);
+INSERT INTO `calculation_item_mm` (`uid_calculation`, `uid_item`) VALUES(2, 6);
+INSERT INTO `calculation_item_mm` (`uid_calculation`, `uid_item`) VALUES(3, 1);
+INSERT INTO `calculation_item_mm` (`uid_calculation`, `uid_item`) VALUES(3, 3);
+INSERT INTO `calculation_item_mm` (`uid_calculation`, `uid_item`) VALUES(3, 7);

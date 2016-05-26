@@ -4,7 +4,7 @@
 		<div class="input-group input-group-lg">
 			<div class="input-group-addon"><span class="glyphicon glyphicon-search"></span></div>
 			<span class="searchclear glyphicon glyphicon-remove-circle"></span>
-			<input class="search form-control" placeholder="Filter nach Name oder Kategorie" type="text"/>
+			<input class="search form-control" placeholder="Filter nach Name oder Kategorie" type="text" value=""/>
 		</div>
 	</form>
 	<div class="text-center">

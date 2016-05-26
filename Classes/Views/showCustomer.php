@@ -12,11 +12,7 @@
 	<div class="form-group">
 		<label class="col-sm-3 col-lg-2 control-label" for="customerAddress">Adresse</label>
 		<div class="col-sm-8 col-lg-6">
-<<<<<<< HEAD
 			<input id="customerAddress" name="address" class="form-control" autocomplete="off" placeholder="Straße Hausnr., PLZ Ort" type="text" value="<?php echo $customer->address ?>" />
-=======
-			<input id="customerAddress" name="address" class="form-control" placeholder="Straße Hausnr., PLZ Ort" type="text" value="<?php echo $customer->address ?>" />
->>>>>>> customer add
 		</div>
 	</div>
 	<hr>

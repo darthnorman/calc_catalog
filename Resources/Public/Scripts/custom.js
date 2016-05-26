@@ -1,5 +1,5 @@
 $(document).ready(function() { 
-	$(".table-sort").tablesorter(); 
+	$(".table-sort").tablesorter();
 	
 	$('body').on('click','.addPosition',function () {
 		var positionsIndex = $('.position').length+1;
@@ -15,8 +15,9 @@ $(document).ready(function() {
 		var positionsPointIndex = $('.positionPoint').length+1;
 		$(this).before($('<div class="positionPoint panel panel-default"><div class="panel-body"><h5>Positionspunkt ' + positionsPointIndex + ':</h5></div></div>'));
 	});
-	if (!$('input.search').val() == '') {
-		$('.searchclear').show();
+	//Search: Filter List View
+	if ($('.filterform').length) {
+		clearsearch();
 	}
 	$('input.search').on('input',function() {
 		if (!$(this).val() == '') {
@@ -25,7 +26,7 @@ $(document).ready(function() {
 			clearsearch();
 		}
 	});
-	$('.filterform').on('click','.searchclear',function () {
+	$('.searchclear').click(function() {
 		clearsearch();
 	});
 	$('input.search').keypress(function(e) {
@@ -38,4 +39,6 @@ $(document).ready(function() {
 function clearsearch() {
     $('input.search').val('');
     $('.searchclear').hide();
+    userList.search();
+    $('input.search').focus();
 }

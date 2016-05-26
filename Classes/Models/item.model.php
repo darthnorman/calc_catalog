@@ -45,8 +45,8 @@ class Item {
 		$st->execute(array('id' => $id));
 	
 		// Returns Customer of a single Calculation object:
-		$customer = $st->fetch(PDO::FETCH_OBJ);
-		return $customer;
+		$category = $st->fetch(PDO::FETCH_OBJ);
+		return $category;
 	}
 }
 

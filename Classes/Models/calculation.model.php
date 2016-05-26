@@ -62,6 +62,25 @@ class Calculation {
 		$customer = $st->fetch(PDO::FETCH_OBJ);
 		return $customer;
 	}
+	
+	public function listItems($id) {
+		$items = self::getItems($id);
+		require_once "Classes/Views/calcItem.php";
+	}
+	
+	public static function getItems($id) {
+		global $db;
+		
+		$id = intval($id);
+	
+		$st = $db->prepare("SELECT i.* FROM item i INNER JOIN calculation_item_mm mm on i.id = mm.uid_item INNER JOIN calculation c on c.id = mm.uid_calculation WHERE c.id=:id;");
+	
+		$st->execute(array('id' => $id));
+	
+		// Returns Customer of a single Calculation object:
+		$items = $st->fetchAll(PDO::FETCH_CLASS, "Item"); 
+		return $items;
+	}
 }
 
 ?>
