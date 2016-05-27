@@ -81,6 +81,52 @@ class Calculation {
 		$items = $st->fetchAll(PDO::FETCH_CLASS, "Item"); 
 		return $items;
 	}
+	
+	public static function getCompletePriceMin($id) {
+		//get all items of this calculation and the current one
+		$items = self::getItems($id);
+		$currentCalculation = self::show($id);
+		// $pt = person days
+		$pt = 0;
+		for ($i = 0; $i < count($items); $i++) {
+			//$task = min person days of current task
+			$task = $items[$i]->tmin;
+			$pt = $pt + $task;
+		};
+		//$tean = team price of current calculation
+		$team = floatval($currentCalculation->price_team);
+		//$pm = pm price of current calculation
+		$pm = floatval($currentCalculation->price_pm);
+		$pm = $pt * 0.1 * $pm;
+		
+		$pt = $pt * $team; // => hours * team price
+		$pt = $pt + $pm; // => + 10% of $sum as pm price
+		
+		return formatCurrency($pt);
+	}
+	
+	public static function getCompletePriceMax($id) {
+		//get all items of this calculation and the current one
+		$items = self::getItems($id);
+		$currentCalculation = self::show($id);
+		// $pt = person days
+		$pt = 0;
+		for ($i = 0; $i < count($items); $i++) {
+			//$task = min person days of current task
+			$task = $items[$i]->tmax;
+			$pt = $pt + $task;
+		};
+		//$tean = team price of current calculation
+		$team = floatval($currentCalculation->price_team);
+		//$pm = pm price of current calculation
+		$pm = floatval($currentCalculation->price_pm);
+		$pm = $pt * 0.1 * $pm;
+		
+		$pt = $pt * $team; // => hours * team price
+		$pt = $pt + $pm; // => + 10% of $sum as pm price
+		
+		return formatCurrency($pt);
+	}
 }
 
 ?>

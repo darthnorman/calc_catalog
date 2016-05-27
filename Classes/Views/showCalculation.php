@@ -40,6 +40,20 @@
 			</div>
 		</div>
 	</div>
+	<div class="form-group">
+		<label class="col-sm-3 col-lg-2 control-label" for="calculationName">Kalkulationspositionen</label>
+		<div class="col-sm-8 col-lg-6">
+			<?php $calculation->listItems($calculation->id) ?>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-8 col-lg-6 col-sm-push-3 col-lg-push-2">
+			<a class="btn btn-success" href=""><span class="glyphicon glyphicon-plus"></span> Position hinzufügen</a>
+		</div>
+	</div>
+	<div class="alert alert-danger">
+		<strong>#TODO:</strong> Möglichkeit neue Position hinzuzufügen/zu entfernen
+	</div>
 	<hr>
 	<div class="form-group">
 		<div class="col-sm-8 col-md-5 col-lg-3 col-sm-offset-3 col-lg-offset-2">
@@ -47,6 +61,23 @@
 			<a class="btn btn-default pull-right" href="/?controller=calculation&action=index" role="button"><span class="glyphicon glyphicon-remove"></span> Abbrechen</a>
 		</div>
 	</div>
-	<?php $calculation->listItems($calculation->id) ?>
-	#TODO: Liste die Position, Möglichkeit neue Position hinzuzufügen
+	<hr>
+	<div class="form-group">
+		<label class="col-sm-3 col-lg-2 control-label">Komplettpreis min.</label>
+		<div class="col-sm-5 col-lg-2">
+			<div class="input-group">
+				<input class="form-control" type="text" readonly value="<?php echo $calculation->getCompletePriceMin($calculation->id) ?>" />
+				<div class="input-group-addon">&euro; <small>inkl. 10% PM</small></div>
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-3 col-lg-2 control-label">Komplettpreis max.</label>
+		<div class="col-sm-5 col-lg-2">
+			<div class="input-group">
+				<input class="form-control" type="text" readonly value="<?php echo $calculation->getCompletePriceMax($calculation->id) ?>" />
+				<div class="input-group-addon">&euro; <small>inkl. 10% PM</small></div>
+			</div>
+		</div>
+	</div>
 </form>

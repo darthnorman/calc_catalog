@@ -39,7 +39,7 @@ function getNetto($brutto) {
 
 // prize formatting
 function formatCurrency($prize) {
-	$formatedPrize = round($prize, 2);
+	$formatedPrize = number_format(round($prize,2),2,',',' ');
 	return $formatedPrize;
 }
 

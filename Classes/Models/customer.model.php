@@ -35,6 +35,20 @@ class Customer {
 		return $customer;
 	}
 	
+	public static function getCalculationCount($id) {
+		global $db;
+	
+		$id = intval($id);
+	
+		$st = $db->prepare("SELECT id FROM calculation WHERE customer=:id");
+	
+		$st->execute(array('id' => $id));
+	
+		// Returns count of calculations with this customer
+		$count = $st->rowCount();
+		return $count;
+	}
+	
 	public static function edit($id) {
 		$name = htmlentities($_POST['name'], ENT_QUOTES);
 		$address = htmlentities($_POST['address'], ENT_QUOTES);
@@ -77,6 +91,23 @@ class Customer {
 				return Customer::show($lastId);
 			}
 		}
+	}
+	
+	public static function delete($id) {
+		$id = intval($id);
+		
+		global $db;
+			
+		$stCalcItemMM = $db->prepare("DELETE mm.* FROM calculation_item_mm mm JOIN calculation c ON c.id=mm.uid_calculation WHERE c.customer=:id");
+		$stCalculation = $db->prepare("DELETE FROM calculation WHERE customer=:id");
+		$stCustomer = $db->prepare("DELETE FROM customer WHERE id=:id");
+			
+		$stCalcItemMM->execute(array('id' => $id));
+		$stCalculation->execute(array('id' => $id));
+		$stCustomer->execute(array('id' => $id));
+		
+		header("Location: /?controller=customer&action=index");
+		exit;
 	}
 }
 

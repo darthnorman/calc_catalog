@@ -44,7 +44,7 @@ class Category {
 	
 		$st->execute(array('id' => $id));
 	
-		// Returns Customer of a single Calculation object:
+		// Returns customer of a single calculation object
 		$count = $st->rowCount();
 		return $count;
 	}

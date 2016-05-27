@@ -17,7 +17,8 @@
 					<th>Datum</th>
 					<th>Titel</th>
 					<th>Kunde</th>
-					<th>Summe in &euro;</th>
+					<th>Summe min. in &euro;</th>
+					<th>Summe max. in &euro;</th>
 					<th>Status</th>
 				</tr>
 			</thead>
@@ -37,7 +38,10 @@
 						<?php echo $calculation->getCustomer($calculation->customer)->name ?>
 					</td>
 					<td>
-						<!-- TODO: Summe in Euro -->
+						<?php echo $calculation->getCompletePriceMin($calculation->id) ?>
+					</td>
+					<td>
+						<?php echo $calculation->getCompletePriceMax($calculation->id) ?>
 					</td>
 					<td class="status">
 						<span class="label label-<?php echo $calculation->getStatus($calculation->status)->cssclass ?>"><?php echo $calculation->getStatus($calculation->status)->name ?></span>

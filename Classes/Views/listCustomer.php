@@ -16,6 +16,7 @@
 				<tr>
 					<th>Kundenname</th>
 					<th>Adresse</th>
+					<th colspan="2">Anzahl Kalkulationen</th>
 				</tr>
 			</thead>
 			<tbody class="list">
@@ -29,6 +30,12 @@
 					</td>
 					<td class="address">
 						<?php echo $customer->address ?>
+					</td>
+					<td>
+						<?php echo $customer->getCalculationCount($customer->id) ?>
+					</td>
+					<td>
+						<a class="delete" href="/?controller=customer&action=delete&id=<?php echo $customer->id?>" title="Löschen"><span class="glyphicon glyphicon-trash"></span></a>
 					</td>
 				</tr>
 				<?php } ?>

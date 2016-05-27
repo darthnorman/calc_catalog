@@ -15,6 +15,13 @@ $(document).ready(function() {
 		var positionsPointIndex = $('.positionPoint').length+1;
 		$(this).before($('<div class="positionPoint panel panel-default"><div class="panel-body"><h5>Positionspunkt ' + positionsPointIndex + ':</h5></div></div>'));
 	});
+	
+	$('body').on('click','a.delete',function (e) {
+		if (!window.confirm("Wollen Sie den Datensatz wirklich löschen?\n\nAchtung: Mit diesem Datensatz verbundene Daten werden ebenfalls gelöscht.")) {
+			e.preventDefault();
+		};
+	});
+	
 	//Search: Filter List View
 	if ($('.filterform').length) {
 		clearsearch();

@@ -96,7 +96,7 @@ INSERT INTO `item` VALUES(2, 'Seitenbaum anlegen', '', 0.25, 1, 1);
 INSERT INTO `item` VALUES(3, 'Prototypen erstellen', 'Prototypen für spätere Dynamisierung erstellen, HAML und SASS verwenden.', 3, 4, 2);
 INSERT INTO `item` VALUES(4, 'Responsive Design', 'Prototypen müssen geräteunabhängig darstellbar sein', 2, 4, 2);
 INSERT INTO `item` VALUES(5, 'Barrierefreiheit', 'Prototypen sollen sich an BITV-Vorgaben halten und möglichst barrierearm sein.', 2, 4, 2);
-INSERT INTO `item` VALUES(6, 'Solr einrichten', 'Sorl auf Server installieren und grundlegend einrichten.', 3.5, 5, 3);
+INSERT INTO `item` VALUES(6, 'Solr einrichten', 'Solr auf Server installieren und grundlegend einrichten.', 3.5, 5, 3);
 INSERT INTO `item` VALUES(7, 'Indexed Search einrichten', 'Die Extension Indexed Search installieren und grundlegend einrichten.', 1, 1.5, 3);
 
 --

@@ -43,7 +43,7 @@ $controllers = array(
 	'calculation' => ['index', 'show'],
 	'item' => ['index', 'show'],
 	'category' => ['index', 'show', 'datalist'],
-	'customer' => ['index', 'show', 'datalist'],
+	'customer' => ['index', 'show', 'datalist', 'delete'],
 	'company' => ['show'],
 	'status' => ['datalist']
 );
@@ -53,10 +53,10 @@ if (array_key_exists($controller, $controllers)) {
 		render($controller, $action);
 	} else {
 		render('pages', 'error');
-		echo $message = 'Action "'.$action.'" unbekannt';
+		message('danger','Action "'.$action.'" unbekannt');
 	}
 } else {
 	render('pages', 'error');
-	echo $message = 'Controller "'.$controller.'" unbekannt';
+	message('danger','Controller "'.$controller.'" unbekannt');
 }
 ?>

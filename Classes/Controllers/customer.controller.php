@@ -17,7 +17,7 @@ class CustomerController {
 	
 	public function show() {
 		//do we have an ID?
-		if (isset($_GET['id'])) {
+		if (isset($_GET['id']) && $_GET['id'] != null) {
 			//was the form submitted?
 			if ($_POST['submit']) {
 				// if id is valid -> edit()
@@ -46,6 +46,17 @@ class CustomerController {
 				require_once "Classes/Views/showCustomer.php";
 			}
 		}
+	}
+	
+	public function delete() {
+		if (isset($_GET['id'])) {
+			$id = $_GET['id'];
+		} else {
+			return render('pages', 'error');
+			message('danger','Fehler: Keine ID übergeben.');
+		}
+		Customer::delete($id);
+		require_once "Classes/Views/listCustomer.php";
 	}
 }
 ?>
