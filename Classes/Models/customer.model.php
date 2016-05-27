@@ -82,13 +82,11 @@ class Customer {
 				global $db;
 				
 				$st = $db->prepare("INSERT INTO customer (name, address) VALUES(:name, :address)");
-				
+								
 				$st->execute(array('name' => $name, 'address' => $address));
-				
-				message('success','Eintrag erfolgreich angelegt.');
-				
+
 				$lastId = $db->lastInsertId();
-				return Customer::show($lastId);
+				header("Location: /?controller=customer&action=show&id=".$lastId);
 			}
 		}
 	}
