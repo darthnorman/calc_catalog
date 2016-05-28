@@ -10,6 +10,7 @@ class StatusController {
 			$currentId = Calculation::getStatus($_GET['id'])->id;
 		require_once "Classes/Views/datalistStatus.php";
 	}
+	
 }
 
 ?>

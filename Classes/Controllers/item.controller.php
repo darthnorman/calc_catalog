@@ -3,16 +3,17 @@
 /* This controller renders the calculation pages */
 
 class ItemController {
+	
 	public function index() {
 		$items = Item::all();
 		require_once "Classes/Views/listItem.php";
 	}
 	
 	public function show() {
-	//do we have an ID?
+		//do we have an ID?
 		if (isset($_GET['id']) && $_GET['id'] != null) {
 			//was the form submitted?
-			if ($_POST['submit']) {
+			if ($_POST['send']) {
 				// if id is valid -> edit()
 				if (is_numeric($_POST['id'])) {
 					$item = Item::edit($_POST['id']);
@@ -29,13 +30,20 @@ class ItemController {
 				}
 			}
 		} else {
-			if ($_POST['submit']) {
+			if ($_POST['send']) {
 				//no id? -> create()
 				$item = Item::create();
 			} else {
 				require_once "Classes/Views/addItem.php";
 			}
 		}
+	}
+	
+	public function datalist() {
+		//$id is ID of current calculation
+		$id = intval($_GET['id']);
+		$items = Item::allSortByCategory($id);
+		require_once "Classes/Views/datalistItem.php";
 	}
 	
 	public function delete() {
@@ -48,6 +56,6 @@ class ItemController {
 		Item::delete($id);
 		require_once "Classes/Views/listItem.php";
 	}
+	
 }
-
 ?>

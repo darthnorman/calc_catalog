@@ -8,7 +8,7 @@
 		</div>
 	</form>
 	<div class="text-center">
-		<a class="btn btn-success" href="/?controller=calculation&action=add"><span class="glyphicon glyphicon-plus"></span> Kalkulation hinzufügen</a>
+		<a class="btn btn-success" href="/?controller=calculation&action=show"><span class="glyphicon glyphicon-plus"></span> Kalkulation hinzufügen</a>
 	</div>
 	<div class="table-responsive">
 		<table class="table table-striped table-hover table-sort">
@@ -54,11 +54,10 @@
 			</tbody>
 		</table>
 		<script>
-			/*var options = {
+			var options = {
 				valueNames: [ 'title', 'customer', 'status' ]
 			};
 			var userList = new List('offers', options);
-			*/
 		</script>
 	</div>
 </div>

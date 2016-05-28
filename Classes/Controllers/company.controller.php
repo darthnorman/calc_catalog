@@ -3,9 +3,10 @@
 /* This controller renders the calculation pages */
 
 class CompanyController {
+	
 	public function show() {
 		//was the form submitted?
-		if ($_POST['submit']) {
+		if ($_POST['send']) {
 			// if id is valid -> edit()
 			if ($_POST['id'] == 1) {
 				$company = Company::edit();
@@ -20,5 +21,6 @@ class CompanyController {
 			require_once "Classes/Views/showCompany.php";
 		}
 	}
+	
 }
 ?>

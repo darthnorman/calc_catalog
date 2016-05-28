@@ -3,23 +3,17 @@
 /* This controller renders the calculation pages */
 
 class CustomerController {
+	
 	public function index() {
 		$customers = Customer::all();
 		require_once "Classes/Views/listCustomer.php";
-	}
-	
-	public function datalist() {
-		$customers = Customer::all();
-		if (isset($_GET['id']))
-			$currentId = Calculation::getCustomer($_GET['id'])->id;
-		require_once "Classes/Views/datalistCustomer.php";
 	}
 	
 	public function show() {
 		//do we have an ID?
 		if (isset($_GET['id']) && $_GET['id'] != null) {
 			//was the form submitted?
-			if ($_POST['submit']) {
+			if ($_POST['send']) {
 				// if id is valid -> edit()
 				if (is_numeric($_POST['id'])) {
 					$customer = Customer::edit($_POST['id']);
@@ -36,7 +30,7 @@ class CustomerController {
 				}
 			}
 		} else {
-			if ($_POST['submit']) {
+			if ($_POST['send']) {
 				//no id? -> create()
 				$customer = Customer::create();
 			} else {
@@ -53,7 +47,14 @@ class CustomerController {
 			return render('pages', 'error');
 		}
 		Customer::delete($id);
-		require_once "Classes/Views/listCustomer.php";
 	}
+	
+	public function datalist() {
+		$customers = Customer::all();
+		if (isset($_GET['id']))
+			$currentId = Calculation::getCustomer($_GET['id'])->id;
+			require_once "Classes/Views/datalistCustomer.php";
+	}
+	
 }
 ?>

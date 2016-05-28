@@ -1,7 +1,7 @@
 
 <?php echo pageHeader($calculation->name, 'glyphicon-list-alt') ?>
 
-<form class="form-horizontal" action="/?controller=calculation&action=show&id=<?php echo $calculation->id ?>" method="POST">
+<form id="calcForm" class="form-horizontal" action="/?controller=calculation&action=show&id=<?php echo $calculation->id ?>" method="POST">
 	<input type="hidden" name="id" value="<?php echo $calculation->id ?>" />
 	<input type="hidden" name="tstamp" value="<?php echo time() ?>" />
 	<div class="form-group">
@@ -60,15 +60,12 @@
 	</div>
 	<div class="form-group">
 		<label class="col-sm-3 col-lg-3 control-label">Kalkulationspositionen</label>
-		<ul id="calculationItems" class="col-sm-8 col-lg-6">
+		<div id="calculationItems" class="col-sm-8 col-lg-6">
 			<?php $calculation->listItems($calculation->id) ?>
-		</ul>
-	</div>
-	<div class="form-group">
-		<div class="col-sm-8 col-lg-6 col-sm-offset-3 col-lg-offset-3">
 			<div class="panel panel-default panel-ghost">
 				<div class="panel-body">
-					<a class="btn btn-success" class="position-add" href="#"><span class="glyphicon glyphicon-plus"></span> Position hinzufügen</a>
+					<a class="btn btn-success position-add" href="#"><span class="glyphicon glyphicon-plus"></span> Position hinzufügen</a>
+					<?php render('item','datalist'); ?>
 				</div>
 			</div>
 		</div>
@@ -76,7 +73,7 @@
 	<hr>
 	<div class="form-group">
 		<div class="col-sm-8 col-md-5 col-lg-3 col-sm-offset-3 col-lg-offset-3">
-			<button type="submit" class="btn btn-primary" name="submit" value="1" ><span class="glyphicon glyphicon-ok"></span> Speichern</button>
+			<button type="submit" class="btn btn-primary" name="send" value="1"><span class="glyphicon glyphicon-ok"></span> Speichern</button>
 			<a class="btn btn-default pull-right" href="/?controller=calculation&action=index" role="button"><span class="glyphicon glyphicon-remove"></span> Abbrechen</a>
 		</div>
 	</div>

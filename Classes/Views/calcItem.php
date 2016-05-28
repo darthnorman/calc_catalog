@@ -1,7 +1,5 @@
 <?php
-if (!$items) {
-	echo '<label class="control-label">Keine Einträge vorhanden!</label>';
-} else {
+if ($items) {
 	$newCat = '';
 	foreach($items as $item) {
 		$currentCat = $item->getCategory($item->id)->name;
@@ -10,7 +8,7 @@ if (!$items) {
 		<div class="panel panel-info" data-itemid="<?php echo $item->id ?>">
 			<input type="hidden" name="item[]" value="<?php echo $item->id ?>"/>
 			<div class="panel-heading">
-				<button type="button" title="Entfernen" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<button type="button" title="Entfernen" class="close delete" ><span aria-hidden="true">&times;</span></button>
 				<h3 class="panel-title"><?php echo $item->name ?></h3>
 			</div>
 			<div class="panel-body">

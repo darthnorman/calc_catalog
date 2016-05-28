@@ -61,7 +61,7 @@ class Customer {
 	}
 	
 	public static function create() {
-		if (isset($_POST['submit'])) {
+		if (isset($_POST['send'])) {
 			$name = htmlentities($_POST['name'], ENT_QUOTES);
 			$address = htmlentities($_POST['address'], ENT_QUOTES);
 			
@@ -128,6 +128,6 @@ class Customer {
 		$calculations = $st->fetchAll(PDO::FETCH_CLASS, "Calculation");
 		return $calculations;
 	}
+	
 }
-
 ?>

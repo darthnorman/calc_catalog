@@ -63,6 +63,6 @@ class Company {
 		$taxrate = $st->fetchColumn();
 		return $taxrate;
 	}
+	
 }
-
 ?>

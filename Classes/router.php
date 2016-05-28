@@ -41,7 +41,7 @@ function render($controller, $action) {
 $controllers = array(
 	'pages' => ['home', 'error'],
 	'calculation' => ['index', 'show', 'delete'],
-	'item' => ['index', 'show', 'delete'],
+	'item' => ['index', 'show', 'datalist', 'delete'],
 	'category' => ['index', 'show', 'datalist', 'delete'],
 	'customer' => ['index', 'show', 'datalist', 'delete'],
 	'company' => ['show'],

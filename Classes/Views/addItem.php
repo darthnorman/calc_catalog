@@ -41,7 +41,7 @@
 	<hr>
 	<div class="form-group">
 		<div class="col-sm-8 col-md-5 col-lg-3 col-sm-offset-3 col-lg-offset-3">
-			<button type="submit" class="btn btn-primary" name="submit" value="1"><span class="glyphicon glyphicon-ok"></span> Speichern</button>
+			<button type="submit" class="btn btn-primary" name="send" value="1"><span class="glyphicon glyphicon-ok"></span> Speichern</button>
 			<a class="btn btn-default pull-right" href="/?controller=item&action=index" role="button"><span class="glyphicon glyphicon-remove"></span> Abbrechen</a>
 		</div>
 	</div>

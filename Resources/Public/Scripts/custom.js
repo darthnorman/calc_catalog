@@ -22,6 +22,23 @@ $(document).ready(function() {
 		};
 	});
 	
+	//add new calculation item
+	$('#calculationItems').on('click','a.position-add',function (e) {
+		$(this).hide();
+		var item = $('#chooseItem');
+		item.removeAttr('disabled');
+		$("#addNewItem").removeClass('hide');
+		e.preventDefault();
+	});
+	
+	$('#calculationItems').on('click','.panel button.close',function () {
+		if (!window.confirm("Wollen Sie den Datensatz wirklich löschen?")) {
+			e.preventDefault();
+		};
+		$(this).parents('.panel').remove();
+		$('button[type="submit"').trigger('click');
+	});
+	
 	//Search: Filter List View
 	if ($('.filterform').length) {
 		clearsearch();

@@ -9,18 +9,11 @@ class CategoryController {
 		require_once "Classes/Views/listCategory.php";
 	}
 	
-	public function datalist() {
-		$categories = Category::all();
-		if (isset($_GET['id']))
-			$currentId = Item::getCategory($_GET['id'])->id;
-		require_once "Classes/Views/datalistCategory.php";
-	}
-	
 	public function show() {
 		//do we have an ID?
 		if (isset($_GET['id']) && $_GET['id'] != null) {
 			//was the form submitted?
-			if ($_POST['submit']) {
+			if ($_POST['send']) {
 				// if id is valid -> edit()
 				if (is_numeric($_POST['id'])) {
 					$category = Category::edit($_POST['id']);
@@ -37,7 +30,7 @@ class CategoryController {
 				}
 			}
 		} else {
-			if ($_POST['submit']) {
+			if ($_POST['send']) {
 				//no id? -> create()
 				$category = Category::create();
 			} else {
@@ -54,8 +47,15 @@ class CategoryController {
 			return render('pages', 'error');
 		}
 		Category::delete($id);
-		require_once "Classes/Views/listCategory.php";
 	}
+	
+	public function datalist() {
+		$categories = Category::all();
+		if (isset($_GET['id']))
+			$currentId = Item::getCategory($_GET['id'])->id;
+			require_once "Classes/Views/datalistCategory.php";
+	}
+	
 }
 
 ?>

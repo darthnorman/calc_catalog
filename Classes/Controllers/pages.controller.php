@@ -1,5 +1,6 @@
 <?php
 class PagesController {
+	
 	public function home() {
 		require_once "Classes/Views/home.php";
 	}
@@ -7,5 +8,6 @@ class PagesController {
 	public function error() {
 		require_once "Classes/Views/error.php";
 	}
+	
 }
 ?>

@@ -68,7 +68,7 @@ class Item {
 	}
 	
 	public static function create() {
-		if (isset($_POST['submit'])) {
+		if (isset($_POST['send'])) {
 			$name = htmlentities($_POST['name'], ENT_QUOTES);
 			$description = htmlentities($_POST['description'], ENT_QUOTES);
 			$tmin = tofloat($_POST['tmin']);
@@ -125,5 +125,20 @@ class Item {
 		$category = $st->fetch(PDO::FETCH_OBJ);
 		return $category;
 	}
+	
+	public static function allSortByCategory($id) {
+		global $db;
+		
+		$id = intval($id);
+		//$st = $db->prepare("SELECT * FROM item ORDER BY category ASC");
+		$st = $db->prepare("SELECT * FROM item WHERE id NOT IN (SELECT uid_item FROM calculation_item_mm WHERE uid_calculation=:id) ORDER BY category ASC");
+	
+		$st->execute(array('id' => $id));
+	
+		// Returns an array of Item objects:
+		$items = $st->fetchAll(PDO::FETCH_CLASS, "Item");
+		return $items;
+	}
+	
 }
 ?>

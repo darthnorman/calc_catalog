@@ -35,6 +35,101 @@ class Calculation {
 		return $calculation;
 	}
 	
+	public static function edit($id) {
+		$name = htmlentities($_POST['name'], ENT_QUOTES);
+		$tstamp = $_POST['tstamp'];
+		$customer = $_POST['customer'];
+		$status = $_POST['status'];
+		$price_team = tofloat($_POST['price_team']);
+		$price_pm = tofloat($_POST['price_pm']);
+	
+		if ($name == '' || $tstamp == '' || $customer == 0 || $status == 0 || $price_team == '' || $price_pm == '') {
+			message('danger','Speichern fehlgeschlagen: Nicht alle Felder waren ausgefüllt.');
+			return Calculation::show();
+		} else {
+			global $db;
+	
+			$id = intval($id);
+			
+			$stCalculation = $db->prepare("UPDATE calculation SET name=:name,tstamp=:tstamp,customer=:customer,status=:status,price_team=:price_team,price_pm=:price_pm WHERE id=:id");
+			
+			$stCalculation->execute(array(
+				'id' => $id,
+				'name' => $name,
+				'tstamp' => $tstamp,
+				'customer' => $customer,
+				'status' => $status,
+				'price_team' => $price_team,
+				'price_pm' => $price_pm
+			));
+			
+			//delete all items of the current calculation then add the ones submitted
+			$stCalcItemMM = $db->prepare("DELETE FROM calculation_item_mm WHERE uid_calculation=:id");
+			$stCalcItemMM->execute(array('id' => $id));
+			
+			if(is_array($_POST['item'])) {
+				$items = $_POST['item'];
+				foreach ($items as $key => $value) {
+					$stCalcItemMMInsert = $db->prepare("INSERT INTO calculation_item_mm ( uid_calculation, uid_item) VALUES(:uid_calculation, :uid_item)");
+					$stCalcItemMMInsert->execute(array(
+						'uid_calculation' => $id,
+						'uid_item' => $value
+					));
+				}
+			}
+	
+			message('success','Eintrag erfolgreich gespeichert.');
+			return Calculation::show($id);
+		}
+	}
+	
+	public static function create() {
+		if (isset($_POST['send'])) {
+			$name = htmlentities($_POST['name'], ENT_QUOTES);
+			$tstamp = $_POST['tstamp'];
+			$customer = $_POST['customer'];
+			$status = $_POST['status'];
+			$price_team = tofloat($_POST['price_team']);
+			$price_pm = tofloat($_POST['price_pm']);
+				
+			if ($name == '' || $customer == 0 || $status == 0 || $price_team == '' || $price_pm == '' || $tstamp == '') {
+				message('danger','Anlegen fehlgeschlagen: Nicht alle Felder waren ausgefüllt.');
+				require_once "Classes/Views/addCalculation.php";
+			} else {
+				global $db;
+	
+				$st = $db->prepare("INSERT INTO calculation (name, tstamp, customer, status, price_team, price_pm) VALUES(:name, :tstamp, :customer, :status, :price_team, :price_pm)");
+	
+				$st->execute(array(
+						'name' => $name,
+						'tstamp' => $tstamp,
+						'customer' => $customer,
+						'status' => $status,
+						'price_team' => $price_team,
+						'price_pm' => $price_pm
+				));
+	
+				$lastId = $db->lastInsertId();
+				header("Location: /?controller=calculation&action=show&id=".$lastId);
+			}
+		}
+	}
+	
+	public static function delete($id) {
+		$id = intval($id);
+	
+		global $db;
+	
+		$stCalcItemMM = $db->prepare("DELETE mm.* FROM calculation_item_mm mm WHERE mm.uid_calculation=:id");
+		$stCalculation = $db->prepare("DELETE FROM calculation WHERE id=:id");
+	
+		$stCalcItemMM->execute(array('id' => $id));
+		$stCalculation->execute(array('id' => $id));
+	
+		header("Location: /");
+		exit;
+	}
+	
 	public static function getStatus($id) {
 		global $db;
 		//$id = ID of current Calculation

@@ -60,7 +60,7 @@ class Category {
 	}
 	
 	public static function create() {
-		if (isset($_POST['submit'])) {
+		if (isset($_POST['send'])) {
 			$name = htmlentities($_POST['name'], ENT_QUOTES);
 				
 			if ($name == '') {
@@ -123,6 +123,6 @@ class Category {
 		$items = $st->fetchAll(PDO::FETCH_CLASS, "Item");
 		return $items;
 	}
+	
 }
-
 ?>

@@ -19,6 +19,7 @@ class Status {
 		$stati = $st->fetchAll(PDO::FETCH_CLASS, "Status");
 		return $stati;
 	}
+	
 }
 
 ?>
