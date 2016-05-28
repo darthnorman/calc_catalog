@@ -1,3 +1,3 @@
-<?php echo pageHeader($title,'glyphicon-th-large');?>
-
-<?php render('calculation','index') ?>
+<?php 
+header("Location: /?controller=calculation&action=index");
+?>

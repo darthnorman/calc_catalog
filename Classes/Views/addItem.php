@@ -1,25 +1,24 @@
 
-<?php echo pageHeader($item->name, 'glyphicon-list-alt') ?>
+<?php echo pageHeader('Kalkulationsposition anlegen', 'glyphicon-list-alt') ?>
 
-<form class="form-horizontal" action="/?controller=item&action=show&id=<?php echo $item->id ?>" method="POST">
-	<input type="hidden" name="id" value="<?php echo $item->id ?>" />
+<form class="form-horizontal" action="/?controller=item&action=show" method="POST">
 	<div class="form-group">
 		<label class="col-sm-3 col-lg-3 control-label" for="itemName">Positionsname</label>
 		<div class="col-sm-8 col-lg-6">
-			<input id="itemName" name="name" class="form-control" autocomplete="off" type="text" value="<?php echo $item->name ?>" />
+			<input id="itemName" name="name" class="form-control" autocomplete="off" type="text" value="" />
 		</div>
 	</div>
 	<div class="form-group">
 		<label class="col-sm-3 col-lg-3 control-label" for="itemDescription">Beschreibung</label>
 		<div class="col-sm-8 col-lg-6">
-			<textarea id="itemDescription" name="description" class="form-control" rows="5" placeholder="maximal 1000 Zeichen"><?php echo $item->description ?></textarea>
+			<textarea id="itemDescription" name="description" class="form-control" rows="5" placeholder="maximal 1000 Zeichen"></textarea>
 		</div>
 	</div>
 	<div class="form-group">
 		<label class="col-sm-3 col-lg-3 control-label" for="itemTmin">min. Aufwand</label>
 		<div class="col-sm-5 col-lg-3">
 			<div class="input-group">
-				<input id="itemTmin" name="tmin" class="form-control" type="text" placeholder="0" value="<?php echo pt($item->tmin) ?>" />
+				<input id="itemTmin" name="tmin" class="form-control" type="text" placeholder="0" value="" />
 				<div class="input-group-addon">PT</div>
 			</div>
 		</div>
@@ -28,7 +27,7 @@
 		<label class="col-sm-3 col-lg-3 control-label" for="itemTmax">max. Aufwand</label>
 		<div class="col-sm-5 col-lg-3">
 			<div class="input-group">
-				<input id="itemTmax" name="tmax" class="form-control" type="text" placeholder="0" value="<?php echo pt($item->tmax) ?>" />
+				<input id="itemTmax" name="tmax" class="form-control" type="text" placeholder="0" value="" />
 				<div class="input-group-addon">PT</div>
 			</div>
 		</div>

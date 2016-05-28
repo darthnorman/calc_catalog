@@ -8,7 +8,7 @@
 		</div>
 	</form>
 	<div class="text-center">
-		<a class="btn btn-success" href="/?controller=item&action=add"><span class="glyphicon glyphicon-plus"></span> Position hinzufügen</a>
+		<a class="btn btn-success" href="/?controller=item&action=show"><span class="glyphicon glyphicon-plus"></span> Position hinzufügen</a>
 	</div>
 	<div class="table-responsive">
 		<table class="table table-striped table-hover table-sort">
@@ -40,7 +40,7 @@
 						<?php echo pt($item->tmax) ?>
 					</td>
 					<td class="category">
-						<?php echo $item->getCategory($item->category)->name ?>
+						<?php echo $item->getCategory($item->id)->name ?>
 					</td>
 					<td class="text-right">
 						<a class="delete" href="/?controller=item&action=delete&id=<?php echo $item->id?>" title="Löschen"><span class="glyphicon glyphicon-trash"></span></a>

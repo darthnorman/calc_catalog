@@ -12,8 +12,8 @@ class Status {
 		global $db;
 		
 		$st = $db->prepare("SELECT * FROM status");
-				
-		$st->execute($arr);
+		
+		$st->execute();
 		
 		// Returns an array of Item objects:
 		$stati = $st->fetchAll(PDO::FETCH_CLASS, "Status");

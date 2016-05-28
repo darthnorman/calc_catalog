@@ -6,7 +6,7 @@
 	<div class="form-group">
 		<label class="col-sm-3 col-lg-3 control-label" for="companyName">Firmenname</label>
 		<div class="col-sm-8 col-lg-6">
-			<input id="companyName" name="name" class="form-control" type="text" value="<?php echo $company->name ?>" />
+			<input id="companyName" name="name" class="form-control" autocomplete="off" type="text" value="<?php echo $company->name ?>" />
 		</div>
 	</div>
 	<div class="form-group">

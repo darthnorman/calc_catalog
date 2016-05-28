@@ -35,7 +35,7 @@
 						</a>
 					</td>
 					<td class="customer">
-						<?php echo $calculation->getCustomer($calculation->customer)->name ?>
+						<?php echo $calculation->getCustomer($calculation->id)->name ?>
 					</td>
 					<td>
 						<?php echo formatCurrency($calculation->getCompletePriceMin($calculation->id)) ?>
@@ -44,7 +44,7 @@
 						<?php echo formatCurrency($calculation->getCompletePriceMax($calculation->id)) ?>
 					</td>
 					<td class="status">
-						<span class="label label-<?php echo $calculation->getStatus($calculation->status)->cssclass ?>"><?php echo $calculation->getStatus($calculation->status)->name ?></span>
+						<span class="label label-<?php echo $calculation->getStatus($calculation->id)->cssclass ?>"><?php echo $calculation->getStatus($calculation->id)->name ?></span>
 					</td>
 					<td class="text-right">
 						<a class="delete" href="/?controller=calculation&action=delete&id=<?php echo $calculation->id?>" title="Löschen"><span class="glyphicon glyphicon-trash"></span></a>
@@ -54,10 +54,11 @@
 			</tbody>
 		</table>
 		<script>
-			var options = {
+			/*var options = {
 				valueNames: [ 'title', 'customer', 'status' ]
 			};
 			var userList = new List('offers', options);
+			*/
 		</script>
 	</div>
 </div>

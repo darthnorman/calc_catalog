@@ -7,7 +7,7 @@
 	<div class="form-group">
 		<label class="col-sm-3 col-lg-3 control-label" for="calculationName">Titel</label>
 		<div class="col-sm-8 col-lg-6">
-			<input id="calculationName" name="name" class="form-control" type="text" value="<?php echo $calculation->name ?>" />
+			<input id="calculationName" name="name" class="form-control" autocomplete="off" type="text" value="<?php echo $calculation->name ?>" />
 		</div>
 	</div>
 	<div class="form-group">
@@ -60,17 +60,18 @@
 	</div>
 	<div class="form-group">
 		<label class="col-sm-3 col-lg-3 control-label">Kalkulationspositionen</label>
-		<div class="col-sm-8 col-lg-6">
+		<ul id="calculationItems" class="col-sm-8 col-lg-6">
 			<?php $calculation->listItems($calculation->id) ?>
-		</div>
+		</ul>
 	</div>
 	<div class="form-group">
-		<div class="text-center">
-			<a class="btn btn-success" href=""><span class="glyphicon glyphicon-plus"></span> Position hinzufügen</a>
+		<div class="col-sm-8 col-lg-6 col-sm-offset-3 col-lg-offset-3">
+			<div class="panel panel-default panel-ghost">
+				<div class="panel-body">
+					<a class="btn btn-success" class="position-add" href="#"><span class="glyphicon glyphicon-plus"></span> Position hinzufügen</a>
+				</div>
+			</div>
 		</div>
-	</div>
-	<div class="alert alert-danger">
-		<strong>#TODO:</strong> Möglichkeit neue Position hinzuzufügen/zu entfernen, Rabatt?
 	</div>
 	<hr>
 	<div class="form-group">

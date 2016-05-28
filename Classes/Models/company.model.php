@@ -16,6 +16,7 @@ class Company {
 		$st = $db->prepare("SELECT * FROM company WHERE id=:id");
 		
 		$st->execute(array('id' => $id));
+		
 		$st->setFetchMode(PDO::FETCH_CLASS, "Company");
 		
 		// Returns a single Item object:
@@ -27,7 +28,7 @@ class Company {
 		$id= 1;
 		$name = htmlentities($_POST['name'], ENT_QUOTES);
 		$taxrate = htmlentities($_POST['taxrate'], ENT_QUOTES);
-	
+		
 		if ($name == '' || $taxrate == '') {
 			message('danger','Speichern fehlgeschlagen: Nicht alle Felder waren ausgefüllt.');
 			return Company::show();
@@ -38,7 +39,11 @@ class Company {
 				
 			$st = $db->prepare("UPDATE company SET name=:name, taxrate=:taxrate WHERE id=:id");
 				
-			$st->execute(array('id' => $id, 'name' => $name, 'taxrate' => $taxrate));
+			$st->execute(array(
+				'id' => $id,
+				'name' => $name,
+				'taxrate' => $taxrate
+			));
 				
 			message('success','Einstellungen erfolgreich gespeichert.');
 			return Company::show();

@@ -15,6 +15,19 @@
 			<input id="customerAddress" name="address" class="form-control" autocomplete="off" placeholder="Straße Hausnr., PLZ Ort" type="text" value="<?php echo $customer->address ?>" />
 		</div>
 	</div>
+	<div class="form-group">
+		<label class="col-sm-3 col-lg-3 control-label">Kalkulationen (<?php echo $customer->getCalculationCount($customer->id) ?>)</label>
+		<div class="col-sm-5 col-lg-3">
+			<div class="list-group">
+			<?php 
+			$calculations = $customer->getCalculation($customer->id);
+			foreach ($calculations as $calculation) {
+				echo '<a class="list-group-item" title="Kalkulation ansehen" href="/?controller=calculation&action=show&id='.$calculation->id.'">'.$calculation->name.'</a>';
+			} 
+			?>
+			</div>
+		</div>
+	</div>
 	<hr>
 	<div class="form-group">
 		<div class="col-sm-8 col-md-5 col-lg-3 col-sm-offset-3 col-lg-offset-3">

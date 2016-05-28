@@ -11,9 +11,9 @@ class Category {
 	public static function all() {
 		global $db;
 		
-		$st = $db->prepare("SELECT * FROM category");
+		$st = $db->prepare("SELECT * FROM category ORDER BY name ASC");
 				
-		$st->execute($arr);
+		$st->execute();
 		
 		// Returns an array of Item objects:
 		$categories = $st->fetchAll(PDO::FETCH_CLASS, "Category");
@@ -28,6 +28,7 @@ class Category {
 		$st = $db->prepare("SELECT * FROM category WHERE id=:id");
 		
 		$st->execute(array('id' => $id));
+		
 		$st->setFetchMode(PDO::FETCH_CLASS, "Category");
 		
 		// Returns a single Item object:
@@ -48,7 +49,10 @@ class Category {
 			
 			$st = $db->prepare("UPDATE category SET name=:name WHERE id=:id");
 			
-			$st->execute(array('id' => $id, 'name' => $name));
+			$st->execute(array(
+				'id' => $id,
+				'name' => $name
+			));
 			
 			message('success','Eintrag erfolgreich gespeichert.');
 			return Category::show($id);
@@ -101,7 +105,7 @@ class Category {
 	
 		$st->execute(array('id' => $id));
 	
-		// Returns customer of a single calculation object
+		// Returns number of items with that category
 		$count = $st->rowCount();
 		return $count;
 	}
@@ -115,7 +119,7 @@ class Category {
 	
 		$st->execute(array('id' => $id));
 	
-		// Returns Customer of a single Calculation object:
+		// Returns all items with the current Category
 		$items = $st->fetchAll(PDO::FETCH_CLASS, "Item");
 		return $items;
 	}

@@ -6,20 +6,20 @@
 	<div class="form-group">
 		<label class="col-sm-3 col-lg-3 control-label" for="categoryName">Bezeichnung</label>
 		<div class="col-sm-8 col-lg-6">
-			<input id="categoryName" name="name" class="form-control" type="text" value="<?php echo $category->name ?>" />
+			<input id="categoryName" name="name" class="form-control" autocomplete="off" type="text" value="<?php echo $category->name ?>" />
 		</div>
 	</div>
 	<div class="form-group">
 		<label class="col-sm-3 col-lg-3 control-label">Kalkulationspositionen (<?php echo $category->getItemCount($category->id) ?>)</label>
 		<div class="col-sm-5 col-lg-3">
-			<select id="categoryItems" class="form-control" readonly size="10">
+			<div class="list-group">
 			<?php 
 				$items = $category->getItems($category->id);
 				foreach ($items as $item) {
-					echo '<option>'.$item->name.'</option>';
+					echo '<a class="list-group-item" title="Position ansehen" href="/?controller=item&action=show&id='.$item->id.'">'.$item->name.'</a>';
 				} 
 			?>
-			</select>
+			</div>
 		</div>
 	</div>
 	<hr>

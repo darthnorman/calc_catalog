@@ -12,7 +12,7 @@ class CategoryController {
 	public function datalist() {
 		$categories = Category::all();
 		if (isset($_GET['id']))
-			$currentId = $_GET['id'];
+			$currentId = Item::getCategory($_GET['id'])->id;
 		require_once "Classes/Views/datalistCategory.php";
 	}
 	

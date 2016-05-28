@@ -104,6 +104,11 @@ a.edit:hover {
 .main .page-header {
 	margin-top: 0;
 }
+.panel-ghost {
+	background-color: #f9f9f9;
+	border: 1px dashed #ddd;
+	text-align: center;
+}
 .table-responsive {
 	margin-top: 20px;
 }

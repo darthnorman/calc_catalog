@@ -11,7 +11,7 @@ class CustomerController {
 	public function datalist() {
 		$customers = Customer::all();
 		if (isset($_GET['id']))
-			$currentId = $_GET['id'];
+			$currentId = Calculation::getCustomer($_GET['id'])->id;
 		require_once "Classes/Views/datalistCustomer.php";
 	}
 	

@@ -12,11 +12,11 @@ class Calculation {
 		global $db;
 		
 		$st = $db->prepare("SELECT * FROM calculation ORDER BY status ASC");
-				
-		$st->execute($arr);
+		
+		$st->execute();
 		
 		// Returns an array of Calculation objects:
-		$calculations = $st->fetchAll(PDO::FETCH_CLASS, "Calculation"); 
+		$calculations = $st->fetchAll(PDO::FETCH_CLASS, "Calculation");
 		return $calculations;
 	}
 	
@@ -37,10 +37,10 @@ class Calculation {
 	
 	public static function getStatus($id) {
 		global $db;
-		
+		//$id = ID of current Calculation
 		$id = intval($id);
 		
-		$st = $db->prepare("SELECT * FROM status WHERE id=:id");
+		$st = $db->prepare("SELECT s.* FROM status s JOIN calculation c ON c.status = s.id WHERE c.id=:id");
 		
 		$st->execute(array('id' => $id));
 		
@@ -51,10 +51,10 @@ class Calculation {
 	
 	public static function getCustomer($id) {
 		global $db;
-	
+		//$id = ID of current Calculation
 		$id = intval($id);
 	
-		$st = $db->prepare("SELECT * FROM customer WHERE id=:id");
+		$st = $db->prepare("SELECT cu.id,cu.name FROM customer cu JOIN calculation ca ON ca.customer = cu.id WHERE ca.id=:id");
 	
 		$st->execute(array('id' => $id));
 		
@@ -73,7 +73,7 @@ class Calculation {
 		
 		$id = intval($id);
 	
-		$st = $db->prepare("SELECT i.* FROM item i INNER JOIN calculation_item_mm mm on i.id = mm.uid_item INNER JOIN calculation c on c.id = mm.uid_calculation WHERE c.id=:id;");
+		$st = $db->prepare("SELECT i.* FROM item i INNER JOIN calculation_item_mm mm on i.id = mm.uid_item INNER JOIN calculation c on c.id = mm.uid_calculation WHERE c.id=:id ORDER BY i.category");
 	
 		$st->execute(array('id' => $id));
 	

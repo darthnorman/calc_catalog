@@ -13,7 +13,7 @@ class Customer {
 		
 		$st = $db->prepare("SELECT * FROM customer ORDER BY name ASC");
 				
-		$st->execute($arr);
+		$st->execute();
 		
 		// Returns an array of Item objects:
 		$customers = $st->fetchAll(PDO::FETCH_CLASS, "Customer"); 
@@ -35,20 +35,6 @@ class Customer {
 		return $customer;
 	}
 	
-	public static function getCalculationCount($id) {
-		global $db;
-	
-		$id = intval($id);
-	
-		$st = $db->prepare("SELECT id FROM calculation WHERE customer=:id");
-	
-		$st->execute(array('id' => $id));
-	
-		// Returns the customer's amount of calculations
-		$count = $st->rowCount();
-		return $count;
-	}
-	
 	public static function edit($id) {
 		$name = htmlentities($_POST['name'], ENT_QUOTES);
 		$address = htmlentities($_POST['address'], ENT_QUOTES);
@@ -63,7 +49,11 @@ class Customer {
 			
 			$st = $db->prepare("UPDATE customer SET name=:name, address=:address WHERE id=:id");
 			
-			$st->execute(array('id' => $id, 'name' => $name, 'address' => $address));
+			$st->execute(array(
+				'id' => $id,
+				'name' => $name,
+				'address' => $address
+			));
 			
 			message('success','Eintrag erfolgreich gespeichert.');
 			return Customer::show($id);
@@ -83,7 +73,10 @@ class Customer {
 				
 				$st = $db->prepare("INSERT INTO customer (name, address) VALUES(:name, :address)");
 								
-				$st->execute(array('name' => $name, 'address' => $address));
+				$st->execute(array(
+					'name' => $name,
+					'address' => $address
+				));
 
 				$lastId = $db->lastInsertId();
 				header("Location: /?controller=customer&action=show&id=".$lastId);
@@ -106,6 +99,34 @@ class Customer {
 		
 		header("Location: /?controller=customer&action=index");
 		exit;
+	}
+	
+	public static function getCalculationCount($id) {
+		global $db;
+	
+		$id = intval($id);
+	
+		$st = $db->prepare("SELECT id FROM calculation WHERE customer=:id");
+	
+		$st->execute(array('id' => $id));
+	
+		// Returns the customer's amount of calculations
+		$count = $st->rowCount();
+		return $count;
+	}
+	
+	public static function getCalculation($id) {
+		global $db;
+	
+		$id = intval($id);
+	
+		$st = $db->prepare("SELECT id,name FROM calculation WHERE customer=:id");
+	
+		$st->execute(array('id' => $id));
+	
+		// Returns all items with the current Category
+		$calculations = $st->fetchAll(PDO::FETCH_CLASS, "Calculation");
+		return $calculations;
 	}
 }
 

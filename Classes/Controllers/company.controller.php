@@ -12,7 +12,6 @@ class CompanyController {
 				require_once "Classes/Views/showCompany.php";
 			} else {
 				//ID is not valid? -> error
-				return render('pages', 'error');
 				message('danger','Speichern fehlgeschlagen: ID ungültig.');
 			}
 		} else {
