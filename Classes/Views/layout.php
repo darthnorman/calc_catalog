@@ -1,3 +1,7 @@
+<?php
+header("Cache-Control: no-cache, must-revalidate");
+header("Expires: Sun, 20 Dec 1987 20:00:00 GMT");
+?>
 <!DOCTYPE html>
 <html lang="de" dir="ltr">
 <head>
