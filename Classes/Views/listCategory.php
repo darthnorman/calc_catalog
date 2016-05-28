@@ -8,14 +8,14 @@
 		</div>
 	</form>
 	<div class="text-center">
-		<a class="btn btn-success" href="/?controller=category&action=add"><span class="glyphicon glyphicon-plus"></span> Kategorie hinzufügen</a>
+		<a class="btn btn-success" href="/?controller=category&action=show"><span class="glyphicon glyphicon-plus"></span> Kategorie hinzufügen</a>
 	</div>
 	<div class="table-responsive">
 		<table class="table table-striped table-hover table-sort">
 			<thead>
 				<tr>
 					<th>Bezeichnung</th>
-					<th>Anzahl Kalkulationspositionen</th>
+					<th colspan="2">Anzahl Kalkulationspositionen</th>
 				</tr>
 			</thead>
 			<tbody class="list">
@@ -30,6 +30,9 @@
 					<td class="category">
 						<?php echo $category->getItemCount($category->id) ?>
 					</td>
+					<td class="text-right">
+						<a class="delete" href="/?controller=category&action=delete&id=<?php echo $category->id?>" title="Löschen"><span class="glyphicon glyphicon-trash"></span></a>
+					</td>
 				</tr>
 				<?php } ?>
 			</tbody>
@@ -41,7 +44,4 @@
 			var userList = new List('categories', options);
 		</script>
 	</div>
-</div>
-<div class="text-center">
-	<a class="btn btn-success" href="/?controller=category&action=add"><span class="glyphicon glyphicon-plus"></span> Kategorie hinzufügen</a>
 </div>

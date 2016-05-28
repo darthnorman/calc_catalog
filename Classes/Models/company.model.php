@@ -22,6 +22,29 @@ class Company {
 		$company = $st->fetch();
 		return $company;
 	}
+	
+	public static function edit() {
+		$id= 1;
+		$name = htmlentities($_POST['name'], ENT_QUOTES);
+		$taxrate = htmlentities($_POST['taxrate'], ENT_QUOTES);
+	
+		if ($name == '' || $taxrate == '') {
+			message('danger','Speichern fehlgeschlagen: Nicht alle Felder waren ausgefüllt.');
+			return Company::show();
+		} else {
+			global $db;
+				
+			$id = intval($id);
+				
+			$st = $db->prepare("UPDATE company SET name=:name, taxrate=:taxrate WHERE id=:id");
+				
+			$st->execute(array('id' => $id, 'name' => $name, 'taxrate' => $taxrate));
+				
+			message('success','Einstellungen erfolgreich gespeichert.');
+			return Company::show();
+		}
+	}
+	
 	public static function getTaxrate() {
 		global $db;
 	
@@ -31,7 +54,7 @@ class Company {
 	
 		$st->execute(array('id' => $id));
 	
-		// Returns Customer of a single Calculation object:
+		// Returns taxrate of current company
 		$taxrate = $st->fetchColumn();
 		return $taxrate;
 	}

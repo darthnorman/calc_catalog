@@ -17,8 +17,8 @@
 					<th>Datum</th>
 					<th>Titel</th>
 					<th>Kunde</th>
-					<th>Summe min. in &euro;</th>
-					<th>Summe max. in &euro;</th>
+					<th>Netto min. in &euro;</th>
+					<th>Netto max. in &euro;</th>
 					<th>Status</th>
 				</tr>
 			</thead>
@@ -38,13 +38,16 @@
 						<?php echo $calculation->getCustomer($calculation->customer)->name ?>
 					</td>
 					<td>
-						<?php echo $calculation->getCompletePriceMin($calculation->id) ?>
+						<?php echo formatCurrency($calculation->getCompletePriceMin($calculation->id)) ?>
 					</td>
 					<td>
-						<?php echo $calculation->getCompletePriceMax($calculation->id) ?>
+						<?php echo formatCurrency($calculation->getCompletePriceMax($calculation->id)) ?>
 					</td>
 					<td class="status">
 						<span class="label label-<?php echo $calculation->getStatus($calculation->status)->cssclass ?>"><?php echo $calculation->getStatus($calculation->status)->name ?></span>
+					</td>
+					<td class="text-right">
+						<a class="delete" href="/?controller=calculation&action=delete&id=<?php echo $calculation->id?>" title="Löschen"><span class="glyphicon glyphicon-trash"></span></a>
 					</td>
 				</tr>
 				<?php } ?>
@@ -57,7 +60,4 @@
 			var userList = new List('offers', options);
 		</script>
 	</div>
-</div>
-<div class="text-center">
-	<a class="btn btn-success" href="/?controller=calculation&action=add"><span class="glyphicon glyphicon-plus"></span> Kalkulation hinzufügen</a>
 </div>

@@ -26,7 +26,6 @@ class CustomerController {
 					require_once "Classes/Views/showCustomer.php";
 				} else {
 					//ID is not valid? -> error 
-					return render('pages', 'error');
 					message('danger','Speichern fehlgeschlagen: ID ungültig.');
 				}
 			} else {
@@ -40,10 +39,8 @@ class CustomerController {
 			if ($_POST['submit']) {
 				//no id? -> create()
 				$customer = Customer::create();
-				require_once "Classes/Views/addCustomer.php";
 			} else {
-				$customer = Customer::show($lastId);
-				require_once "Classes/Views/showCustomer.php";
+				require_once "Classes/Views/addCustomer.php";
 			}
 		}
 	}
@@ -52,8 +49,8 @@ class CustomerController {
 		if (isset($_GET['id'])) {
 			$id = $_GET['id'];
 		} else {
-			return render('pages', 'error');
 			message('danger','Fehler: Keine ID übergeben.');
+			return render('pages', 'error');
 		}
 		Customer::delete($id);
 		require_once "Classes/Views/listCustomer.php";

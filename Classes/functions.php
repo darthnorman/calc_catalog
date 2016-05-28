@@ -31,10 +31,11 @@ function pageHeader($title = '', $icon = '') {
 }
 
 // tax calculation
-function getNetto($brutto) {
-	$taxrate = Company::getTaxrate();
-	$netto = $brutto + ($brutto * ($taxrate/100));
-	return $netto;
+function getBrutto($netto) {
+	$taxrate = intval(Company::getTaxrate());
+	$netto = floatval($netto);
+	$brutto = $netto + ($netto * ($taxrate/100));
+	return formatCurrency($brutto);
 }
 
 // prize formatting
@@ -57,6 +58,6 @@ function dateFormat($timestamp) {
 
 //flash message
 function message($class, $text) {
-	echo '<div class="alert alert-'.$class.'" role="alert"><p>'.$text.'</p></div>';
+	echo '<div class="alert alert-'.$class.' alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><p>'.$text.'</p></div>';
 	return;
 }

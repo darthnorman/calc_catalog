@@ -11,7 +11,7 @@ class Calculation {
 	public static function all() {
 		global $db;
 		
-		$st = $db->prepare("SELECT * FROM calculation");
+		$st = $db->prepare("SELECT * FROM calculation ORDER BY status ASC");
 				
 		$st->execute($arr);
 		
@@ -102,7 +102,7 @@ class Calculation {
 		$pt = $pt * $team; // => hours * team price
 		$pt = $pt + $pm; // => + 10% of $sum as pm price
 		
-		return formatCurrency($pt);
+		return $pt;
 	}
 	
 	public static function getCompletePriceMax($id) {
@@ -125,7 +125,7 @@ class Calculation {
 		$pt = $pt * $team; // => hours * team price
 		$pt = $pt + $pm; // => + 10% of $sum as pm price
 		
-		return formatCurrency($pt);
+		return $pt;
 	}
 }
 

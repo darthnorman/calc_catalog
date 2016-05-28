@@ -18,7 +18,7 @@
 					<th>Beschreibung</th>
 					<th>PT min.</th>
 					<th>PT max.</th>
-					<th>Kategorie</th>
+					<th colspan="2">Kategorie</th>
 				</tr>
 			</thead>
 			<tbody class="list">
@@ -42,6 +42,9 @@
 					<td class="category">
 						<?php echo $item->getCategory($item->category)->name ?>
 					</td>
+					<td class="text-right">
+						<a class="delete" href="/?controller=item&action=delete&id=<?php echo $item->id?>" title="Löschen"><span class="glyphicon glyphicon-trash"></span></a>
+					</td>
 				</tr>
 				<?php } ?>
 			</tbody>
@@ -53,7 +56,4 @@
 			var userList = new List('items', options);
 		</script>
 	</div>
-</div>
-<div class="text-center">
-	<a class="btn btn-success" href="/?controller=item&action=add"><span class="glyphicon glyphicon-plus"></span> Position hinzufügen</a>
 </div>

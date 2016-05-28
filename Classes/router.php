@@ -40,9 +40,9 @@ function render($controller, $action) {
 // we're adding an entry for the new controller and its actions
 $controllers = array(
 	'pages' => ['home', 'error'],
-	'calculation' => ['index', 'show'],
-	'item' => ['index', 'show'],
-	'category' => ['index', 'show', 'datalist'],
+	'calculation' => ['index', 'show', 'delete'],
+	'item' => ['index', 'show', 'delete'],
+	'category' => ['index', 'show', 'datalist', 'delete'],
 	'customer' => ['index', 'show', 'datalist', 'delete'],
 	'company' => ['show'],
 	'status' => ['datalist']

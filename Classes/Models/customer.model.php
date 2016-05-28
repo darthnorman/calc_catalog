@@ -11,7 +11,7 @@ class Customer {
 	public static function all() {
 		global $db;
 		
-		$st = $db->prepare("SELECT * FROM customer");
+		$st = $db->prepare("SELECT * FROM customer ORDER BY name ASC");
 				
 		$st->execute($arr);
 		
@@ -44,7 +44,7 @@ class Customer {
 	
 		$st->execute(array('id' => $id));
 	
-		// Returns count of calculations with this customer
+		// Returns the customer's amount of calculations
 		$count = $st->rowCount();
 		return $count;
 	}
@@ -54,8 +54,8 @@ class Customer {
 		$address = htmlentities($_POST['address'], ENT_QUOTES);
 
 		if ($name == '' || $address == '') {
-			return render('pages', 'error');
 			message('danger','Speichern fehlgeschlagen: Nicht alle Felder waren ausgefüllt.');
+			return Customer::show($id);
 		} else {
 			global $db;
 			
@@ -76,8 +76,8 @@ class Customer {
 			$address = htmlentities($_POST['address'], ENT_QUOTES);
 			
 			if ($name == '' || $address == '') {
-				return render('pages', 'error');
 				message('danger','Anlegen fehlgeschlagen: Nicht alle Felder waren ausgefüllt.');
+				require_once "Classes/Views/addCustomer.php";
 			} else {
 				global $db;
 				

@@ -23,7 +23,7 @@ if (isset($_GET['id'])) {
 					$stmt->close();
 				} else {
 					// show an error message if the query has an error
-					echo "ERROR: could not prepare SQL statement.";
+					message('danger',"ERROR: could not prepare SQL statement.");
 				}
 				// redirect the user once the form is updated
 				header("Location: view.php");

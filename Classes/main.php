@@ -7,7 +7,6 @@ $version = 0.1;
 $defaultTitle = 'Kalkulationskatalog';
 
 /* Includes */
-
 require_once "Classes/config.php";
 require_once "Classes/connect.php";
 require_once "Classes/functions.php";

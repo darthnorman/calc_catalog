@@ -1,5 +1,6 @@
 <?php foreach($items as $item) { ?>
-<div class="panel panel-info" id="<?php echo $item->id ?>">
+<div class="panel panel-info" data-itemid="<?php echo $item->id ?>">
+	<input type="hidden" name="item[]" value="<?php echo $item->id ?>"/>
 	<div class="panel-heading">
 		<button type="button" title="Entfernen" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 		<h3 class="panel-title"><?php echo $item->name ?></h3>

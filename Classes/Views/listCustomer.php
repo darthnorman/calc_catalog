@@ -34,7 +34,7 @@
 					<td>
 						<?php echo $customer->getCalculationCount($customer->id) ?>
 					</td>
-					<td>
+					<td class="text-right">
 						<a class="delete" href="/?controller=customer&action=delete&id=<?php echo $customer->id?>" title="Löschen"><span class="glyphicon glyphicon-trash"></span></a>
 					</td>
 				</tr>
@@ -48,7 +48,4 @@
 			var userList = new List('customers', options);
 		</script>
 	</div>
-</div>
-<div class="text-center">
-	<a class="btn btn-success" href="/?controller=customer&action=show"><span class="glyphicon glyphicon-plus"></span> Kunde hinzufügen</a>
 </div>

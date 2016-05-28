@@ -27,7 +27,7 @@
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li <?php if($controller == 'company') echo 'class="active"' ?>>
-					<a href="/?controller=company&action=show"><span class="glyphicon glyphicon-cog" title="Einstellungen"></span></a>
+					<a href="/?controller=company&action=show"><span class="glyphicon glyphicon-cog" title="Einstellungen"></span><span class="visible-xs-inline">&emsp;Einstellungen</span></a>
 				</li>
 			</ul>
 		</div>

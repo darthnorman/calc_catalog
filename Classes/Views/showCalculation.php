@@ -5,25 +5,25 @@
 	<input type="hidden" name="id" value="<?php echo $calculation->id ?>" />
 	<input type="hidden" name="tstamp" value="<?php echo time() ?>" />
 	<div class="form-group">
-		<label class="col-sm-3 col-lg-2 control-label" for="calculationName">Titel</label>
+		<label class="col-sm-3 col-lg-3 control-label" for="calculationName">Titel</label>
 		<div class="col-sm-8 col-lg-6">
 			<input id="calculationName" name="name" class="form-control" type="text" value="<?php echo $calculation->name ?>" />
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-3 col-lg-2 control-label" for="calculationCustomer">Kunde</label>
+		<label class="col-sm-3 col-lg-3 control-label" for="calculationCustomer">Kunde</label>
 		<div class="col-sm-5 col-lg-3">
 			<?php render('customer','datalist') ?>
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-3 col-lg-2 control-label" for="calculationCategory">Status</label>
+		<label class="col-sm-3 col-lg-3 control-label" for="calculationStatus">Status</label>
 		<div class="col-sm-5 col-lg-2">
 			<?php render('status','datalist') ?>
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-3 col-lg-2 control-label" for="calculationPteam">Tagessatz Entwicklung</label>
+		<label class="col-sm-3 col-lg-3 control-label" for="calculationPteam">Tagessatz Entwicklung</label>
 		<div class="col-sm-5 col-lg-2">
 			<div class="input-group">
 				<input id="calculationPteam" name="price_team" class="form-control" type="text" placeholder="0" value="<?php echo formatCurrency($calculation->price_team) ?>" />
@@ -32,52 +32,51 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-3 col-lg-2 control-label" for="calculationTmax">Tagessatz PM</label>
+		<label class="col-sm-3 col-lg-3 control-label" for="calculationPpm">Tagessatz PM</label>
 		<div class="col-sm-5 col-lg-2">
 			<div class="input-group">
-				<input id="calculationTmax" name="tmax" class="form-control" type="text" placeholder="0" value="<?php echo formatCurrency($calculation->price_pm) ?>" />
+				<input id="calculationPpm" name="price_pm" class="form-control" type="text" placeholder="0" value="<?php echo formatCurrency($calculation->price_pm) ?>" />
 				<div class="input-group-addon">&euro;</div>
 			</div>
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-3 col-lg-2 control-label" for="calculationName">Kalkulationspositionen</label>
+		<label class="col-sm-3 col-lg-3 control-label">Brutto min.</label>
+		<div class="col-sm-6 col-lg-3">
+			<div class="input-group">
+				<input class="form-control" type="text" readonly value="<?php echo getBrutto($calculation->getCompletePriceMin($calculation->id)) ?>" />
+				<div class="input-group-addon">&euro; <small>inkl. 10&thinsp;% PM und <?php echo Company::getTaxrate() ?>&thinsp;% Mehrwertsteuer</small></div>
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-3 col-lg-3 control-label">Brutto max.</label>
+		<div class="col-sm-6 col-lg-3">
+			<div class="input-group">
+				<input class="form-control" type="text" readonly value="<?php echo getBrutto($calculation->getCompletePriceMax($calculation->id)) ?>" />
+				<div class="input-group-addon">&euro; <small>inkl. 10&thinsp;% PM und <?php echo Company::getTaxrate() ?>&thinsp;% Mehrwertsteuer</small></div>
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-3 col-lg-3 control-label">Kalkulationspositionen</label>
 		<div class="col-sm-8 col-lg-6">
 			<?php $calculation->listItems($calculation->id) ?>
 		</div>
 	</div>
 	<div class="form-group">
-		<div class="col-sm-8 col-lg-6 col-sm-push-3 col-lg-push-2">
+		<div class="text-center">
 			<a class="btn btn-success" href=""><span class="glyphicon glyphicon-plus"></span> Position hinzufügen</a>
 		</div>
 	</div>
 	<div class="alert alert-danger">
-		<strong>#TODO:</strong> Möglichkeit neue Position hinzuzufügen/zu entfernen
+		<strong>#TODO:</strong> Möglichkeit neue Position hinzuzufügen/zu entfernen, Rabatt?
 	</div>
 	<hr>
 	<div class="form-group">
-		<div class="col-sm-8 col-md-5 col-lg-3 col-sm-offset-3 col-lg-offset-2">
-			<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span> Speichern</button>
+		<div class="col-sm-8 col-md-5 col-lg-3 col-sm-offset-3 col-lg-offset-3">
+			<button type="submit" class="btn btn-primary" name="submit" value="1" ><span class="glyphicon glyphicon-ok"></span> Speichern</button>
 			<a class="btn btn-default pull-right" href="/?controller=calculation&action=index" role="button"><span class="glyphicon glyphicon-remove"></span> Abbrechen</a>
-		</div>
-	</div>
-	<hr>
-	<div class="form-group">
-		<label class="col-sm-3 col-lg-2 control-label">Komplettpreis min.</label>
-		<div class="col-sm-5 col-lg-2">
-			<div class="input-group">
-				<input class="form-control" type="text" readonly value="<?php echo $calculation->getCompletePriceMin($calculation->id) ?>" />
-				<div class="input-group-addon">&euro; <small>inkl. 10% PM</small></div>
-			</div>
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-sm-3 col-lg-2 control-label">Komplettpreis max.</label>
-		<div class="col-sm-5 col-lg-2">
-			<div class="input-group">
-				<input class="form-control" type="text" readonly value="<?php echo $calculation->getCompletePriceMax($calculation->id) ?>" />
-				<div class="input-group-addon">&euro; <small>inkl. 10% PM</small></div>
-			</div>
 		</div>
 	</div>
 </form>

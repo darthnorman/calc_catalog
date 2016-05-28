@@ -17,14 +17,44 @@ class CategoryController {
 	}
 	
 	public function show() {
-		// we expect a url of form ?controller=posts&action=show&id=x
-		// without an id we just redirect to the error page as we need the post id to find it in the database
-		if (!isset($_GET['id']))
-			return render('pages', 'error');
+		//do we have an ID?
+		if (isset($_GET['id']) && $_GET['id'] != null) {
+			//was the form submitted?
+			if ($_POST['submit']) {
+				// if id is valid -> edit()
+				if (is_numeric($_POST['id'])) {
+					$category = Category::edit($_POST['id']);
+					require_once "Classes/Views/showCategory.php";
+				} else {
+					//ID is not valid? -> error
+					message('danger','Speichern fehlgeschlagen: ID ungültig.');
+				}
+			} else {
+				if (is_numeric($_GET['id']) && $_GET['id'] > 0) {
+					//no submit? -> show()
+					$category = Category::show($_GET['id']);
+					require_once "Classes/Views/showCategory.php";
+				}
+			}
+		} else {
+			if ($_POST['submit']) {
+				//no id? -> create()
+				$category = Category::create();
+			} else {
+				require_once "Classes/Views/addCategory.php";
+			}
+		}
+	}
 	
-		// we use the given id to get the right post
-		$category = Category::show($_GET['id']);
-		require_once "Classes/Views/showCategory.php";
+	public function delete() {
+		if (isset($_GET['id'])) {
+			$id = $_GET['id'];
+		} else {
+			message('danger','Fehler: Keine ID übergeben.');
+			return render('pages', 'error');
+		}
+		Category::delete($id);
+		require_once "Classes/Views/listCategory.php";
 	}
 }
 
