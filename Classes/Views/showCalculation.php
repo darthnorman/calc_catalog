@@ -18,13 +18,13 @@
 	</div>
 	<div class="form-group">
 		<label class="col-sm-3 col-lg-3 control-label" for="calculationStatus">Status</label>
-		<div class="col-sm-5 col-lg-2">
+		<div class="col-sm-5 col-lg-3">
 			<?php render('status','datalist') ?>
 		</div>
 	</div>
 	<div class="form-group">
 		<label class="col-sm-3 col-lg-3 control-label" for="calculationPteam">Tagessatz Entwicklung</label>
-		<div class="col-sm-5 col-lg-2">
+		<div class="col-sm-5 col-lg-3">
 			<div class="input-group">
 				<input id="calculationPteam" name="price_team" class="form-control" type="text" placeholder="0" value="<?php echo formatCurrency($calculation->price_team) ?>" />
 				<div class="input-group-addon">&euro;</div>
@@ -33,7 +33,7 @@
 	</div>
 	<div class="form-group">
 		<label class="col-sm-3 col-lg-3 control-label" for="calculationPpm">Tagessatz PM</label>
-		<div class="col-sm-5 col-lg-2">
+		<div class="col-sm-5 col-lg-3">
 			<div class="input-group">
 				<input id="calculationPpm" name="price_pm" class="form-control" type="text" placeholder="0" value="<?php echo formatCurrency($calculation->price_pm) ?>" />
 				<div class="input-group-addon">&euro;</div>
@@ -42,20 +42,22 @@
 	</div>
 	<div class="form-group">
 		<label class="col-sm-3 col-lg-3 control-label">Brutto min.</label>
-		<div class="col-sm-6 col-lg-3">
+		<div class="col-sm-5 col-lg-3">
 			<div class="input-group">
 				<input class="form-control" type="text" readonly value="<?php echo getBrutto($calculation->getCompletePriceMin($calculation->id)) ?>" />
-				<div class="input-group-addon">&euro; <small>inkl. 10&thinsp;% PM und <?php echo Company::getTaxrate() ?>&thinsp;% Mehrwertsteuer</small></div>
+				<div class="input-group-addon">&euro;</div>
 			</div>
+			<span class="help-block"><small>inkl. 10&thinsp;% PM und <?php echo Company::getTaxrate() ?>&thinsp;% Mehrwertsteuer</small></span>
 		</div>
 	</div>
 	<div class="form-group">
 		<label class="col-sm-3 col-lg-3 control-label">Brutto max.</label>
-		<div class="col-sm-6 col-lg-3">
+		<div class="col-sm-5 col-lg-3">
 			<div class="input-group">
 				<input class="form-control" type="text" readonly value="<?php echo getBrutto($calculation->getCompletePriceMax($calculation->id)) ?>" />
-				<div class="input-group-addon">&euro; <small>inkl. 10&thinsp;% PM und <?php echo Company::getTaxrate() ?>&thinsp;% Mehrwertsteuer</small></div>
+				<div class="input-group-addon">&euro;</div>
 			</div>
+			<span class="help-block"><small>inkl. 10&thinsp;% PM und <?php echo Company::getTaxrate() ?>&thinsp;% Mehrwertsteuer</small></span>
 		</div>
 	</div>
 	<div class="form-group">

@@ -120,7 +120,7 @@ class Customer {
 	
 		$id = intval($id);
 	
-		$st = $db->prepare("SELECT id,name FROM calculation WHERE customer=:id");
+		$st = $db->prepare("SELECT id,name FROM calculation WHERE customer=:id ORDER BY name ASC");
 	
 		$st->execute(array('id' => $id));
 	

@@ -115,7 +115,7 @@ class Category {
 	
 		$id = intval($id);
 	
-		$st = $db->prepare("SELECT id,name FROM item WHERE category=:id");
+		$st = $db->prepare("SELECT id,name FROM item WHERE category=:id ORDER BY name ASC");
 	
 		$st->execute(array('id' => $id));
 	
