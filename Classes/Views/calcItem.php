@@ -15,8 +15,8 @@ if ($items) {
 				<?php echo nl2br($item->description) ?>
 			</div>
 			<div class="panel-footer clearfix">
-				<div class="pull-left"><strong><?php echo pt($item->tmin) ?></strong></div>
-				<div class="pull-right"><strong><?php echo pt($item->tmax) ?></strong></div>
+				<div class="pull-left"><strong><?php echo pt($item->tmin) ?> PT</strong></div>
+				<div class="pull-right"><strong><?php echo pt($item->tmax) ?> PT</strong></div>
 			</div>
 		</div>
 		<?php 

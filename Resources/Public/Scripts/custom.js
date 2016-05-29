@@ -26,17 +26,26 @@ $(document).ready(function() {
 	$('#calculationItems').on('click','a.position-add',function (e) {
 		$(this).hide();
 		var item = $('#chooseItem');
-		item.removeAttr('disabled');
+		item.prop("disabled",false);
 		$("#addNewItem").removeClass('hide');
 		e.preventDefault();
 	});
 	
-	$('#calculationItems').on('click','.panel button.close',function () {
+	$('#calculationItems').on('click','.panel-info button.close',function () {
 		if (!window.confirm("Wollen Sie den Datensatz wirklich löschen?")) {
 			e.preventDefault();
 		};
 		$(this).parents('.panel').remove();
 		$('button[type="submit"').trigger('click');
+	});
+	
+	//hide new calculation item
+	$('#calculationItems').on('click','.hideChooseItem',function (e) {
+		$('a.position-add').show();
+		var item = $('#chooseItem');
+		item.prop("disabled",true);
+		$("#addNewItem").addClass('hide');
+		e.preventDefault();
 	});
 	
 	//Search: Filter List View

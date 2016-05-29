@@ -127,3 +127,6 @@ sympy-plots-for-*.tex/
 /document.pdf
 /Projektdokumentation.pdf
 /tmp/
+
+/Classdoc/phpdoc-cache*
+/Inhalt/

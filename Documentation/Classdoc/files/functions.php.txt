@@ -1,0 +1,80 @@
+<?php
+
+/* helper functions */
+
+// title formatting
+function formatTitle($title = '') {
+	if($title) {
+		$title.= ' | ';
+	}
+	$title .= $GLOBALS['defaultTitle'];
+	return $title;
+}
+
+// title with icon
+function iconTitle($title = '', $icon = '') {
+	if($title) {
+		if($icon) {
+			$iconTitle = '<i class="glyphicon '.$icon.'"></i> '.$title;
+		}
+	}
+	return $iconTitle;
+}
+
+// title as page header with icon
+function pageHeader($title = '', $icon = '') {
+	if($title && $icon) {
+		$title = iconTitle($title, $icon);
+		$pageHeader = '<h1 class="page-header">'.$title.'</h1>';
+	}
+	return $pageHeader;
+}
+
+// tax calculation
+function getBrutto($netto) {
+	$taxrate = intval(Company::getTaxrate());
+	$netto = floatval($netto);
+	$brutto = $netto + ($netto * ($taxrate/100));
+	return formatCurrency($brutto);
+}
+
+// prize formatting
+function formatCurrency($prize) {
+	$formatedPrize = number_format(round($prize,2),2,',',' ');
+	return $formatedPrize;
+}
+
+//string to float
+function tofloat($num) {
+	$dotPos = strrpos($num, '.');
+	$commaPos = strrpos($num, ',');
+	$sep = (($dotPos > $commaPos) && $dotPos) ? $dotPos :
+	((($commaPos > $dotPos) && $commaPos) ? $commaPos : false);
+	 
+	if (!$sep) {
+		return floatval(preg_replace("/[^0-9]/", "", $num));
+	}
+
+	return floatval(
+			preg_replace("/[^0-9]/", "", substr($num, 0, $sep)) . '.' .
+			preg_replace("/[^0-9]/", "", substr($num, $sep+1, strlen($num)))
+			);
+}
+
+// person days formatting
+function pt($number) {
+	echo rtrim(number_format($number,3,',',''),'0'.',');
+	return;	
+}
+
+// time stamp into readable (german) date
+function dateFormat($timestamp) {
+	 echo date('d.m.Y H:i:s', $timestamp);
+	 return;
+}
+
+//flash message
+function message($class, $text) {
+	echo '<div class="alert alert-'.$class.' alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><p>'.$text.'</p></div>';
+	return;
+}

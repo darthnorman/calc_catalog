@@ -1,0 +1,61 @@
+<?php
+
+/* This controller renders the calculation pages */
+
+class CustomerController {
+	
+	public function index() {
+		$customers = Customer::all();
+		require_once "Classes/Views/listCustomer.php";
+	}
+	
+	public function show() {
+		//do we have an ID?
+		if (isset($_GET['id']) && $_GET['id'] != null) {
+			//was the form submitted?
+			if ($_POST['send']) {
+				// if id is valid -> edit()
+				if (is_numeric($_POST['id'])) {
+					$customer = Customer::edit($_POST['id']);
+					require_once "Classes/Views/showCustomer.php";
+				} else {
+					//ID is not valid? -> error 
+					message('danger','Speichern fehlgeschlagen: ID ungültig.');
+				}
+			} else {
+				if (is_numeric($_GET['id']) && $_GET['id'] > 0) {
+					//no submit? -> show()
+					$customer = Customer::show($_GET['id']);
+					require_once "Classes/Views/showCustomer.php";
+				}
+			}
+		} else {
+			if ($_POST['send']) {
+				//no id? -> create()
+				$customer = Customer::create();
+			} else {
+				require_once "Classes/Views/addCustomer.php";
+			}
+		}
+	}
+	
+	public function delete() {
+		if (isset($_GET['id'])) {
+			$id = $_GET['id'];
+		} else {
+			message('danger','Fehler: Keine ID übergeben.');
+			return render('pages', 'error');
+		}
+		Customer::delete($id);
+	}
+	
+	public function datalist() {
+		$customers = Customer::all();
+		if (isset($_GET['id']))
+			$currentId = Calculation::getCustomer($_GET['id'])->id;
+			require_once "Classes/Views/datalistCustomer.php";
+	}
+	
+}
+?>
+

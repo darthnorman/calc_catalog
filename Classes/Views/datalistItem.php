@@ -1,5 +1,5 @@
-<div id="addNewItem" class="row hide">
-	<div class="col-xs-6 col-sm-8">
+<div id="addNewItem" class="hide">
+	<div class="input-group">
 		<select id="chooseItem" disabled class="form-control" name="item[]">
 			<option selected value="0">Bitte wählen...</option>
 		<?php
@@ -16,8 +16,9 @@
 		}
 		?>
 		</select>
-	</div>
-	<div class="col-xs-6 col-sm-4">
-		<button type="submit" class="btn btn-primary" name="send" value="1"><span class="glyphicon glyphicon-ok"></span> Speichern</button>
+		<div class="input-group-btn">
+			<button type="submit" class="btn btn-primary" name="send" value="1"><span class="glyphicon glyphicon-ok"></span> Speichern</button>
+			<button type="button" title="Ausblenden" class="btn btn-default hideChooseItem" ><span class="glyphicon glyphicon-remove"></span></button>
+		</div>
 	</div>
 </div>

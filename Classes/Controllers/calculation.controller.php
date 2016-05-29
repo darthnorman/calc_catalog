@@ -1,7 +1,10 @@
 <?php
 
-/* This controller renders the calculation pages */
-
+/**
+ * Class Controllerklasse für Kalkulationen
+ * @author Norman
+ *
+ */
 class CalculationController {
 	
 	public function index() {

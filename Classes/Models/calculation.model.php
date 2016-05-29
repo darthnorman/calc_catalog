@@ -1,13 +1,15 @@
 <?php
-
+/**
+ * 
+ * Calculation
+ * @author Norman Paschke <normanpaschke@googlemail.com>
+ *
+ */
 class Calculation {
 	
-	/*
-		The find static method selects categories
-		from the database and returns them as
-		an array of Calculation objects.
-	*/
-	
+	/**
+	 * 
+	 */
 	public static function all() {
 		global $db;
 		
@@ -19,7 +21,10 @@ class Calculation {
 		$calculations = $st->fetchAll(PDO::FETCH_CLASS, "Calculation");
 		return $calculations;
 	}
-	
+	/**
+	 * 
+	 * @param unknown $id
+	 */
 	public static function show($id) {
 		global $db;
 		
@@ -35,6 +40,10 @@ class Calculation {
 		return $calculation;
 	}
 	
+	/**
+	 * 
+	 * @param unknown $id
+	 */
 	public static function edit($id) {
 		$name = htmlentities($_POST['name'], ENT_QUOTES);
 		$tstamp = $_POST['tstamp'];
@@ -70,6 +79,10 @@ class Calculation {
 			if(is_array($_POST['item'])) {
 				$items = $_POST['item'];
 				foreach ($items as $key => $value) {
+					if ($value == 0) {
+						message('danger','Speicherung fehlgeschlagen: Eine Position hatte den Wert 0.');
+						return Calculation::show($id);
+					}
 					$stCalcItemMMInsert = $db->prepare("INSERT INTO calculation_item_mm ( uid_calculation, uid_item) VALUES(:uid_calculation, :uid_item)");
 					$stCalcItemMMInsert->execute(array(
 						'uid_calculation' => $id,
@@ -83,6 +96,9 @@ class Calculation {
 		}
 	}
 	
+	/**
+	 * 
+	 */
 	public static function create() {
 		if (isset($_POST['send'])) {
 			$name = htmlentities($_POST['name'], ENT_QUOTES);
@@ -115,6 +131,10 @@ class Calculation {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param unknown $id
+	 */
 	public static function delete($id) {
 		$id = intval($id);
 	
@@ -130,6 +150,11 @@ class Calculation {
 		exit;
 	}
 	
+	/**
+	 * 
+	 * @param unknown $id
+	 * @return mixed
+	 */
 	public static function getStatus($id) {
 		global $db;
 		//$id = ID of current Calculation
@@ -144,6 +169,11 @@ class Calculation {
 		return $status;
 	}
 	
+	/**
+	 * 
+	 * @param unknown $id
+	 * @return mixed
+	 */
 	public static function getCustomer($id) {
 		global $db;
 		//$id = ID of current Calculation
@@ -158,11 +188,19 @@ class Calculation {
 		return $customer;
 	}
 	
+	/**
+	 * 
+	 * @param unknown $id
+	 */
 	public function listItems($id) {
 		$items = self::getItems($id);
 		require_once "Classes/Views/calcItem.php";
 	}
 	
+	/**
+	 * 
+	 * @param unknown $id
+	 */
 	public static function getItems($id) {
 		global $db;
 		
@@ -177,6 +215,10 @@ class Calculation {
 		return $items;
 	}
 	
+	/**
+	 * 
+	 * @param unknown $id
+	 */
 	public static function getCompletePriceMin($id) {
 		//get all items of this calculation and the current one
 		$items = self::getItems($id);
@@ -200,6 +242,10 @@ class Calculation {
 		return $pt;
 	}
 	
+	/**
+	 * 
+	 * @param unknown $id
+	 */
 	public static function getCompletePriceMax($id) {
 		//get all items of this calculation and the current one
 		$items = self::getItems($id);

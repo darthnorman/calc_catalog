@@ -14,7 +14,7 @@
 		<table class="table table-striped table-hover table-sort">
 			<thead>
 				<tr>
-					<th>Datum</th>
+					<th>Letzte Änderung</th>
 					<th>Titel</th>
 					<th>Kunde</th>
 					<th>Netto min. in &euro;</th>
