@@ -3,11 +3,10 @@
 \subsection{Detaillierte Zeitplanung}
 \label{app:Zeitplanung}
 \tabelleAnhang{ZeitplanungKomplett}
+\clearpage
 
 \input{Anhang/AnhangRessourcen.tex}
 \clearpage
-
-\input{Anhang/AnhangPflichtenheft.tex}
 
 \subsection{Ausschnitt einer Excel-Tabelle}
 \label{app:Exceltabelle}
@@ -42,7 +41,8 @@ CREATE TABLE `item` (
   CONSTRAINT `fk_category` FOREIGN KEY (`category`) REFERENCES category(`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=8;
 
-INSERT INTO `item` VALUES(1, 'Berechtigungen vergeben', 'Den Nutzern werden Rechte vergeben, damit sie ihre Aufgaben erledigen können.', 1.25, 2, 1);
+INSERT INTO `item` VALUES(1, 'Berechtigungen vergeben', 'Den Nutzern werden
+Rechte vergeben, damit sie ihre Aufgaben erledigen koennen.', 1.25, 2, 1);
 \end{lstlisting}
 \caption{Auszug aus der Datenbank in SQL-Format}
 \end{figure}

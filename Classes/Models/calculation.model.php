@@ -170,20 +170,21 @@ class Calculation {
 	}
 	
 	/**
-	 * 
-	 * @param unknown $id
-	 * @return mixed
+	 * Gibt den zugehörigen Kunde der übergebenen Kalukulation zurück. 
+	 * @param $id ID eines Objekts der Klasse Calculation
+	 * @return mixed einzelnes Objekt der Klasse Customer
 	 */
 	public static function getCustomer($id) {
 		global $db;
-		//$id = ID of current Calculation
+		//ID einer Kalkulation
 		$id = intval($id);
 	
+		//Kunde der aktuellen Kalkulation holen
 		$st = $db->prepare("SELECT cu.id,cu.name FROM customer cu JOIN calculation ca ON ca.customer = cu.id WHERE ca.id=:id");
 	
 		$st->execute(array('id' => $id));
 		
-		// Returns Customer of a single Calculation object:
+		//Kunde der aktuellen Kalkulation zurückgeben
 		$customer = $st->fetch(PDO::FETCH_OBJ);
 		return $customer;
 	}
@@ -216,29 +217,40 @@ class Calculation {
 	}
 	
 	/**
-	 * 
-	 * @param unknown $id
+	 * Berechnet den minimalen Gesamtpreis einer Kalkulation
+	 * @param $id ID der aktuellen Kalkulation
+	 * @return $pt minimaler Gesamtpreis in Euro
 	 */
 	public static function getCompletePriceMin($id) {
-		//get all items of this calculation and the current one
+		// hole alle Positionen dieser Kalkulation
 		$items = self::getItems($id);
+		// hole aktuelle Kalkulation
 		$currentCalculation = self::show($id);
-		// $pt = person days
+		
+		// Iteriere ueber alle Positionen und berechne
+		// den minimalen Gesamtaufwand 
 		$pt = 0;
 		for ($i = 0; $i < count($items); $i++) {
-			//$task = min person days of current task
 			$task = $items[$i]->tmin;
 			$pt = $pt + $task;
 		};
-		//$tean = team price of current calculation
+		
+		// Tagessatz des Teams
 		$team = floatval($currentCalculation->price_team);
-		//$pm = pm price of current calculation
+		
+		// Multipliziere 10% das Gesamtaufwands
+		// mit dem Tagessatz der PMs
 		$pm = floatval($currentCalculation->price_pm);
 		$pm = $pt * 0.1 * $pm;
 		
-		$pt = $pt * $team; // => hours * team price
-		$pt = $pt + $pm; // => + 10% of $sum as pm price
+		// Multipliziere die Gesamtzahl der Personentage
+		// mit dem Tagessatz des Teams
+		$pt = $pt * $team;
 		
+		// Addiere PM-Aufwand auf Gesamtaufwand
+		$pt = $pt + $pm;
+		
+		// Gib minimalen Gesamtpreis der Kalkulation zurueck
 		return $pt;
 	}
 	

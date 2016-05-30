@@ -4,21 +4,33 @@
 
 \subsection{Implementierung der Datenstrukturen}
 \label{sec:ImplementierungDatenstrukturen}
-Die Datenbank wurde von Hand in einer \acs{SQL}-Datei angelegt. Sie wird per
-phpMyAdmin in das Datenbanksystem importiert und enthält für jeden Bereich eine
-kleine Anzahl an Beispieldaten. Ein Auszug der Datei liegt im
+Die Datenbank wurde von Hand in Form einer \acs{SQL}-Datei angelegt. Sie wird
+per phpMyAdmin in das Datenbanksystem importiert und enthält für jeden Bereich
+eine kleine Anzahl an Beispieldaten. Ein Auszug der Datei liegt im
 \Anhang{app:SQL}.
 
 
 \subsection{Implementierung der Benutzeroberfläche}
 \label{sec:ImplementierungBenutzeroberflaeche}
+Bei der Implementierung der Benutzeroberfläche wurde darauf geachtet, dass eine
+Übersichtliche Struktur bewart bleibt. Farben sollten sehr sparsam und nur an
+Stellen eingesetzt werden, wo sie für den Nutzer eine sinnvolle Hilfestellung
+darstellen. Dies macht sich vor allem bei der Darstellung von Buttons
+bemerkbar. Sie stellen die primären Interaktionspunkte für Anwender dar.
 
-- Filterung/Suche mit Focus
-- Liste und Einzelansicht
-- Auswahl in Navigation
-- Einheitliche Gestaltung
-- dezente Farbgebung
-- Placeholder
+Die Navigation, die es ermöglicht zwischen den Listenansichten der Komponenten
+zu wechseln, ist ständig prominent am oberen Bildschirmrand platziert. Von dort
+aus kann jederzeit auf eine andere Komponente der Anwendung zugegriffen werden.
+Die Einstellungen (Firmenname und Mehrwertsteuersatz) werden nur extrem selten
+gebraucht und wurden deshalb an den rechten Rand der Navigation gesetzt.
+
+Ein großes Suchfeld über jeder Listenansicht bekommt bei einem Neuladen der
+Seite immer den Fokus, sodass direkt mit der Eingabe und damit einer Filterung
+begonnen werden kann, ohne dabei mit der Maus erst ins das Feld navigieren zu
+müssen. Das Leeren des Feldes funktioniert über das Drücken der
+\fbox{ESC}-Taste. Damit ist die Filterfunktion äußerst schnell rein über die
+Tastatur bedienbar. Durch zusätzliche Platzhalter in den Eingabefeldern, wird
+der Nutzer auf das Format seiner Eingaben hingewiesen.
 
 Screenshots der Anwendung in der Entwicklungsphase mit Dummy-Daten befinden sich
 im \Anhang{Screenshots}.
@@ -26,13 +38,82 @@ im \Anhang{Screenshots}.
 
 \subsection{Implementierung der Geschäftslogik}
 \label{sec:ImplementierungGeschaeftslogik}
+Um die Logik den Anforderungen entsprechend abzubilden, wurde zunächst eine
+Konfigurationsdatei angelegt, die die Zugangsdaten für die Datenbank enthält.
+Die \textit{PHP Data Objects}-Erweiterung stellt die zentrale Schnittstelle
+zur Datenbank bereit und wird für alle Interaktionen mit ihr genutzt.
 
-\begin{itemize}
-	\item Beschreibung des Vorgehens bei der Umsetzung/Programmierung der entworfenen Anwendung.
-	\item \Ggfs interessante Funktionen/Algorithmen im Detail vorstellen, verwendete Entwurfsmuster zeigen.
-	\item Quelltextbeispiele zeigen.
-	\item Hinweis: Wie in Kapitel~\ref{sec:Einleitung}: \nameref{sec:Einleitung} zitiert, wird nicht ein lauffähiges Programm bewertet, sondern die Projektdurchführung. Dennoch würde ich immer Quelltextausschnitte zeigen, da sonst Zweifel an der tatsächlichen Leistung des Prüflings aufkommen können.
-\end{itemize}
+Für die Ausgabe wurde im nächsten Schritt die Funktion \texttt{render()}
+geschrieben, die anhand der aufgerufenden \acs{URL} den Controller und den View
+bestimmt. Ein Controller-Array beinhaltet alle erlaubten Kombinationen und
+vergleicht diese mit der übergebenen URL, dargestellt in
+\ref{fig:getCompletePriceMin}: \nameref{fig:getCompletePriceMin}.
 
-\paragraph{Beispiel}
-Die Klasse \texttt{Com\-par\-ed\-Na\-tu\-ral\-Mo\-dule\-In\-for\-ma\-tion} findet sich im \Anhang{app:CNMI}.
+Die einzelnen Controller bestimmen mittels des gewählten Views, welche Daten
+geholt und durch welches Template diese ausgegeben werden. Das Auslesen der
+Daten wird durch die Model-Klassen realisiert, indem Datenbankabfragen getätigt
+werden und die Objekte an das Template übergeben werden.
+
+Nach und nach wurden die Methoden zur Bearbeitung, Speicherung und Erstellung
+neuer Datensätze geschaffen. Helferfunktionen, die kleine Aufgaben bei der
+Darstellung von Werten im Template oder innerhalb von Methoden übernehmen,
+wurden gesondert in der Datei \texttt{functions.php} gelistet und global
+eingebunden.
+
+Am Beispiel der Klasse \texttt{Calculation} soll die Methode
+\texttt{getCompletePriceMin()} vorgestellt werden. Die Methode gibt den
+minimalen Gesamtpreis (ohne Steuern) der übergebenen Kalkulation zurück.
+
+\subsection*{\texttt{getCompletePriceMin()}-Methode}
+\label{fig:getCompletePriceMin}
+\begin{figure}[htb]
+\begin{lstlisting}
+/**
+ * Berechnet den minimalen Gesamtpreis einer Kalkulation
+ * @param $id ID der aktuellen Kalkulation
+ * @return $pt minimaler Gesamtpreis in Euro
+ */
+public static function getCompletePriceMin($id) {
+	// hole alle Positionen dieser Kalkulation
+	$items = self::getItems($id);
+	// hole aktuelle Kalkulation
+	$currentCalculation = self::show($id);
+	
+	// Iteriere ueber alle Positionen und berechne
+	// den minimalen Gesamtaufwand 
+	$pt = 0;
+	for ($i = 0; $i < count($items); $i++) {
+		$task = $items[$i]->tmin;
+		$pt = $pt + $task;
+	};
+	
+	// Tagessatz des Teams
+	$team = floatval($currentCalculation->price_team);
+	
+	// Multipliziere 10% das Gesamtaufwands
+	// mit dem Tagessatz der PMs
+	$pm = floatval($currentCalculation->price_pm);
+	$pm = $pt * 0.1 * $pm;
+	
+	// Multipliziere die Gesamtzahl der Personentage
+	// mit dem Tagessatz des Teams
+	$pt = $pt * $team;
+	
+	// Addiere PM-Aufwand auf Gesamtaufwand
+	$pt = $pt + $pm;
+	
+	// Gib minimalen Gesamtpreis der Kalkulation zurueck
+	return $pt;
+}
+\end{lstlisting}
+\caption{\texttt{getCompletePriceMin()}-Methode}
+\end{figure}
+
+Im Template \texttt{showCalculation.php} wird diese Methode wie folgt
+aufgerufen.
+\begin{lstlisting}
+<?php echo getBrutto($calculation->getCompletePriceMin($calculation->id)) ?>
+\end{lstlisting}
+Die Funktion \texttt{getBrutto()} ist eine Hilfsfunktion und daher nicht Teil
+der Klasse, sie holt sich den Mehrwertsteuersatz aus den
+Einstellungen und berechnet dazu einen Wert inklusive der Steuer.

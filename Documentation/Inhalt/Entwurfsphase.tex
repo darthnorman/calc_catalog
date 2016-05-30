@@ -5,28 +5,28 @@
 \subsection{Zielplattform}
 \label{sec:Zielplattform}
 Das Programm sollte als eigenständige Anwendung zum Einsatz kommen. Da bisher
-keine Sammlung von Kalkulationespositionen vorhanden ist, muss eine Datenbank
-eingerichtet werden. Der Einsatz des My\acs{SQL}-Klons MariaDB bewährt sich
-jeden Tag im Unternehmen. \acs{PHP} dagegen ist eine Skriptsprache, die
-besonders geeignetist, um eine dynamische Webanwendung auf Basis freier
-Software umzusetzen. Über viele Jahre hinweg hat sie sich zum einem Standard im
-Webbereich entwickelt. Die Mitarbeiter sind mit den Technologien vertraut und
-können gegebenfalls das System warten und weiterentwickeln.
+keine Sammlung von Kalkulationspositionen vorhanden ist, muss eine Datenbank
+eingerichtet werden. Der Einsatz des My\acs{SQL}-Fork MariaDB bewährt sich
+täglich im Unternehmen. \acs{PHP} dagegen ist eine Skriptsprache, die
+besonders geeignet ist, um eine dynamische Webanwendung auf Basis freier
+Software umzusetzen. Sie ist die am häufigsten verwendete Programmiersprache zum
+Erstellen von Websites.\citet{PHP} Die Mitarbeiter sind mit den Technologien
+vertraut und können gegebenfalls das System warten und weiterentwickeln.
 
 \subsection{Architekturdesign}
 \label{sec:Architekturdesign}
-Der Kalkulationskatalog soll auf Basis einer \ac{MVC}-Architektur umgesetzt.
-Diese unterteilt jede Softwarekomponente einem der drei
+Der Kalkulationskatalog soll auf Basis einer \acs{MVC}-Architektur umgesetzt
+werden. Diese teilt jede Softwarekomponente einen der drei
 Bestandteile -- Datenmodell (engl. model), Präsentation (engl. view) oder
-Programmsteuerung (engl. controller)\citet{ModelViewController} -- zu.
-Jeder Teil hat einen speziellen Aufgabenbereich, der von denen der anderen weitestgehend unabhängig
-ist. 
+Programmsteuerung (engl. controller) \citet{ModelViewController} -- zu.
+Jeder Teil hat einen speziellen Aufgabenbereich, der von denen der anderen
+weitestgehend unabhängig ist. 
 
 Das Model repräsentiert die Daten, der View stellt die Daten dar und der
 Controller steuert den Ablauf der Anwendung -- das Bindeglied zwischen Model und
 View. Durch die lose Verbindung der Komponenten, erhöht sich die
 Wiederverwendbarkeit und Austauschbarkeit. So lässt sich beispielsweise die
-Oberfläche komplett tauschen, ohne dabei das Model ändern zu müssen. Die
+Oberfläche komplett verändern, ohne dabei das Model anpassen zu müssen. Die
 Trennung bevorteilt außerdem das Testen und Warten der Komponenten.
 
 Es wurde sich bewusst für die Erstellung eines eigenen kleinen Frameworks
@@ -37,16 +37,17 @@ hätte. Durch ein eigens entwickeltes Framework bleibt der Code schlank und
 
 \subsection{Entwurf der Benutzeroberfläche}
 \label{sec:Benutzeroberflaeche}
-Eine strukturierte Oberfläche ist für eine einfache und zielgerichtet Bedienung
+Eine strukturierte Oberfläche ist für eine einfache und zielgerichtete Bedienung
 von großer Bedeutung. Erste Wireframes wurden mit dem Tool
-Balsamiq\citet{Balsamiq} erstellt und geben die Richtung für den Aufbau der
+Balsamiq \citet{Balsamiq} erstellt und geben die Richtung für den Aufbau der
 Overfläche vor. Die Entwürfe befinden sich im \Anhang{app:Entwuerfe}.
 
-Um schnell eine saubere, responsive Weboberfläche zu generieren, wurde auf das
-Framework Bootstrap\citet{Bootstrap} (ehemals Twitter Bootstrap) gesetzt. Als
-\acs{CSS}-Framework bietet es Vorlagen für alle erdenklichen Module:
-Textstyling, Formulare, Listen und Tabellen sind einige wenige Vorlagen, die in
-diesem Projekt Verwendung finden.
+Um schnell eine saubere,
+responsive\footnote{\url{https://de.wikipedia.org/wiki/Responsive_Design}}
+Weboberfläche zu generieren, wurde auf das Framework Bootstrap \citet{Bootstrap}
+(ehemals \textit{Twitter Bootstrap}) gesetzt. Als \acs{CSS}-Framework bietet es
+Vorlagen für alle erdenklichen Module: Textstyling, Formulare, Listen und Tabellen sind
+einige wenige Vorlagen, die in diesem Projekt Verwendung finden.
 
 
 \subsection{Datenmodell}
@@ -54,7 +55,11 @@ diesem Projekt Verwendung finden.
 Das Datenmodell mit eingezeichneten Kardinalitäten ist im
 \Anhang{app:Datenbankmodell} einzusehen. Im Zentrum stehen die Kalkulationen,
 die jeweils einen Kunden und einen Status besitzen. Kalkulationen bestehen
-außerdem aus einer Vielzahl von Positionen. Diese wiederum besitzen eine Kategorie.
+außerdem aus einer Vielzahl von Positionen. Diese wiederum besitzen eine
+Kategorie. Die n:m-Beziehung zwischen Kalkulationen und Positionen wird
+durch eine separate Tabelle abgebildet. Globale Einstellungen, wie
+Firmenname und Mehrwertsteuersatz, werden in einem gesonderten Tabelle
+(\texttt{Company}) abgelegt.
 
 \subsection{Geschäftslogik}
 \label{sec:Geschaeftslogik}
@@ -63,7 +68,7 @@ ergeben sich folgende Klassen: \textbf{\texttt{Calculation}},
 \textbf{\texttt{Category}}, \textbf{\texttt{Company}},
 \textbf{\texttt{Customer}}, \textbf{\texttt{Item}} und \textbf{\texttt{Status}}.
 Mit der Ausnahme von \textbf{\texttt{Company}} bekommt jede der Klassen eine
-Methode \textbf{\texttt{show}} (Anzeigen) und \textbf{\texttt{create}}
+Methode \textbf{\texttt{show()}} (Anzeigen) und \textbf{\texttt{create()}}
 (Anlegen), sowie \textbf{\texttt{delete()}} (Löschen), \textbf{\texttt{edit()}}
 (Bearbeiten) und ggf. \textbf{\texttt{all()}} (Listenausgabe).
 Weiterhin gibt es Methoden, um an Informationen anderer Tabellen zu gelangen,
@@ -75,10 +80,11 @@ anderen Methoden aufgebaut.
 \label{sec:Qualitaetssicherung}
 Um die Funktionalität der Anwendung zu gewährleisten, wurden Anwendertests
 geschaffen. Diese sehen die systematischen Tests aller Funktionen vor, indem
-alle Aktionen, die die Software hat, mit unterschiedlichen Eingaben ausgeführt
+alle Aktionen der Software, mit unterschiedlichen Eingaben ausgeführt
 werden.
 
-Wird ein Test nicht bestanden, kann in git ein Fehlerbericht angelegt werden.
-Git wird außerdem benutzt, um einen stabilen Entwicklungsstrang der Anwendung zu
-haben, jeder kann sich an der Weiterentwicklung beteiligen und Vorschläge zur
-Verbesserung einbringen.
+Wird ein Test nicht bestanden, kann in git ein Fehlerbericht angelegt
+werden.\footnote{\url{https://github.com/darthnorman/calc_catalog/issues}} Git
+wird außerdem benutzt, um jederzeit einen stabilen Entwicklungsstrang der
+Anwendung zu haben, jeder kann sich an der Weiterentwicklung beteiligen und
+Vorschläge zur Verbesserung einbringen.
