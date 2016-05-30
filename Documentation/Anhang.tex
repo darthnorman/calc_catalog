@@ -9,12 +9,42 @@
 
 \input{Anhang/AnhangPflichtenheft.tex}
 
+\subsection{Ausschnitt einer Excel-Tabelle}
+\label{app:Exceltabelle}
+\begin{figure}[htb]
+\centering
+\includegraphicsKeepAspectRatio{istanalyse.png}{1}
+\caption{Ausschnitt einer Excel-Tabelle einer Kalkulation}
+\end{figure}
+\clearpage
+
 \subsection{Datenbankmodell}
 \label{app:Datenbankmodell}
 \begin{figure}[htb]
 \centering
 \includegraphicsKeepAspectRatio{datenbankschema.png}{1}
 \caption{Datenbankmodell}
+\end{figure}
+\clearpage
+
+\subsection{SQL - Auszug}
+\label{app:SQL}
+\begin{figure}[htb]
+\begin{lstlisting}
+CREATE TABLE `item` (
+  `id` int(6) unsigned NOT NULL auto_increment,
+  `name` varchar(128) collate utf8_unicode_ci NOT NULL,
+  `description` text(1000),
+  `tmin` float(6,3) unsigned NOT NULL DEFAULT '0',
+  `tmax` float(6,3) unsigned NOT NULL DEFAULT '0',
+  `category` int(6) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_category` FOREIGN KEY (`category`) REFERENCES category(`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=8;
+
+INSERT INTO `item` VALUES(1, 'Berechtigungen vergeben', 'Den Nutzern werden Rechte vergeben, damit sie ihre Aufgaben erledigen können.', 1.25, 2, 1);
+\end{lstlisting}
+\caption{Auszug aus der Datenbank in SQL-Format}
 \end{figure}
 \clearpage
 

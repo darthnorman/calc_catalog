@@ -13,31 +13,13 @@ hinzufügen kann, ohne dabei permanent andere Mitarbeiter einbeziehen zu müssen
 
 ## Systemanforderungen
 
-- PHP 5.5
-- MySQL 5.0
+- Webserver
+- PHP 5.5+
+- MySQL 5.0+
 
-## ToDos
+## Installation
 
-- Im Gespräch mit den Mitarbeitern herausfinden, welche genauen Anforderungen 
-an die Anwendung bestehen
-- Überlegungen zur UI/UX anstellen
-- Datenbankschema erstellen
-- Klassendiagramm erstellen
-- Lokale Umgebung einrichten
-	- Git-Repository zur Versionsverwaltung anlegen
-	- Datenbanktabellen anlegen
-- Umsetzung der Programmlogik in PHP
-	- Erstellen, Ändern und Löschen von Kalkulationen
-	- Erstellen, Ändern und Löschen von Einzelaufgaben
-	- Berechnung des Gesamtaufwandes in Personentage
-	- Berechnung des Gesamtaufwandes in Euro (mit u. ohne Steuern)
-- Nachvollziehbare Darstellung der Logik
-	- Bearbeitung der Datensätze
-	- Auflistung der Einzelaufgaben
-	- Darstellung der Berechnung des Gesamtaufwandes
-- Testphase
-	- Testprotokoll erstellen
-	- Die Anwendung von Mitarbeitern nach Protokoll testen lassen
-	- Auf eventuelle Fehler in der Anwendung reagieren und nachbessern
-- Dokumentation erstellen
-- Präsentation erstellen
+- Dateien auf den Webserver kopieren
+- neue Datenbank erstellen
+- /Classes/config_sample.php in config.php umbenennen und die Datenbankverbindung eintragen
+- data.sql importieren (optional)

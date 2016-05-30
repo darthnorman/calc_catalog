@@ -1,12 +1,15 @@
 % !TEX root = ../Projektdokumentation.tex
 \section{Einführungsphase}
 \label{sec:Einfuehrungsphase}
+Um die Software zu deployen, muss lediglich ein Webserver mit
+einer Datenbank bereitgestellt werden. Damit eine Verbindung zur Datenbank
+aufgebaut werden kann, muss die Datei \texttt{/Classes/config\_sample.php} in
+\texttt{config.php} umbenannt werden und die Verbindungsdaten
+(Datenbankhost, -Name, -Nutzer und Passwort) müssen eingetragen sein.
+Ein Import der beiliegenden Datenbank ist nciht zwingend erforderlich, die
+Datensätze können auch aus der Anwendung heraus angelegt werden.
 
-\begin{itemize}
-	\item Welche Schritte waren zum Deployment der Anwendung nötig und wie wurden sie durchgeführt (automatisiert/manuell)?
-	\item Wurden \ggfs Altdaten migriert und wenn ja, wie?
-	\item Wurden Benutzerschulungen durchgeführt und wenn ja, Wie wurden sie vorbereitet?
-\end{itemize}
-
-
-\Zwischenstand{Einführungsphase}{Einfuehrung}
+Eine Migration alter Kalkulationen hat nicht stattgefunden, da es nicht
+Bestandteil des Projektes war. Dennoch sollte der Import einiger Bestandsdaten
+in naher Zukunft durchgeführt werden, es würde den Einstieg und die initiale
+Arbeit mit dem Katalog erheblich erleichtern.

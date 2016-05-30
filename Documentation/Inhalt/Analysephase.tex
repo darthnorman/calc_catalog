@@ -1,111 +1,116 @@
 % !TEX root = ../Projektdokumentation.tex
 \section{Analysephase} 
-\label{sec:Analysephase}
-
+\label{sec:Analysephase} 
 
 \subsection{Ist-Analyse} 
 \label{sec:IstAnalyse}
-\begin{itemize}
-	\item Wie ist die bisherige Situation (\zB bestehende Programme, Wünsche der Mitarbeiter)?
-	\item Was gilt es zu erstellen/verbessern?
-\end{itemize}
+Um Kalkulationen für öffentliche Ausschreibungen durchzuführen, wird momentan
+jeweils eine große Excel-Tabelle angelegt, auf die alle an der Kalkulation
+beteiligten Mitarbeiter zugreifen können. In die Tabelle werden
+untereinander händisch alle Anforderungen aus dem Lastenheft geschrieben, die es
+zu schätzen gilt. Daneben werden die Aufwände eingegeben und am Ende rechnet
+die Tabellenkalkulation eine Summe aller Aufwände multipliziert mit
+dem Tagessatz des Unternehmens aus. Eine solche Tabelle befindet sich im
+\Anhang{app:Exceltabelle}.
 
+Durch eine mündliche Befragung der Mitarbeiter wurde schnell klar, dass keiner
+mit der bisherigen Lösung zu 100\,\% zufrieden ist. Die Tabelle wird schnell
+unübersichtlich, das Eintragen der Positionen ist zeitaufwendig. Am meisten Zeit
+geht aber für das Schätzen selbst verloren: Positionen, die regelmäßig in
+Ausschreibungen auftreten, müssen jedesmal neu geschätzt werden. Das führt
+nicht selten zu Stresssituationen unter den Beteiligten, die mit anhaltender
+Dauer der Schätzung zusehends angespannter werden. Diesen Zustand gilt es um
+jeden Preis zu beheben. Eine Sammlung bereits geschätzter Positionen würde die
+Arbeit wesentlich beschleunigen und zur psychischen Entlastung beitragen.
 
 \subsection{Wirtschaftlichkeitsanalyse}
 \label{sec:Wirtschaftlichkeitsanalyse}
-\begin{itemize}
-	\item Lohnt sich das Projekt für das Unternehmen?
-\end{itemize}
-
 
 \subsubsection{\gqq{Make or Buy}-Entscheidung}
 \label{sec:MakeOrBuyEntscheidung}
-\begin{itemize}
-	\item Gibt es vielleicht schon ein fertiges Produkt, dass alle Anforderungen des Projekts abdeckt?
-	\item Wenn ja, wieso wird das Projekt trotzdem umgesetzt?
-\end{itemize}
-
+Die Mitarbeiter behelfen sich mit der in
+\ref{sec:IstAnalyse}\nameref{sec:IstAnalyse} genannten Excel-Tabelle, so gut sie
+können. Leider findet sich auf dem Markt für eine derartig spezielle Form der
+Schätzung keine passende Software, die allen Vorgaben gerecht wird. Selbst wenn
+es Softwarelösungen gäbe, die für diesen Einsatzzweck geeignet sind, wären
+anfallende Lizenzkosten ein großes Hindernis. 
+Die Alternative, eine eigene Software zu programmieren, stand schon zur
+Debatte, wurde aber aus Zeitgründen nie verwirklicht. Deshalb hat es sich
+angeboten diese Aufgabe in Form einer betrieblichen Projektarbeit umzusetzen.
 
 \subsubsection{Projektkosten}
 \label{sec:Projektkosten}
-\begin{itemize}
-	\item Welche Kosten fallen bei der Umsetzung des Projekts im Detail an (\zB Entwicklung, Einführung/Schulung, Wartung)?
-\end{itemize}
 
-\paragraph{Beispielrechnung (verkürzt)}
-Die Kosten für die Durchführung des Projekts setzen sich sowohl aus Personal-, als auch aus Ressourcenkosten zusammen.
-Laut Tarifvertrag verdient ein Auszubildender im dritten Lehrjahr pro Monat \eur{1000} Brutto. 
+Die Kosten für die Durchführung des Projekts setzen sich sowohl aus Personal-,
+als auch aus Ressourcenkosten zusammen. Laut Tarifvertrag verdient ein
+Auszubildender im dritten Lehrjahr pro Monat \eur{1000} Brutto und arbeitet pro
+Monat etwa 20 Tage.
 
-\begin{eqnarray}
-8 \mbox{ h/Tag} \cdot 220 \mbox{ Tage/Jahr} = 1760 \mbox{ h/Jahr}\\
-\eur{1000}\mbox{/Monat} \cdot 13,3 \mbox{ Monate/Jahr} = \eur{13300} \mbox{/Jahr}\\
-\frac{\eur{13300} \mbox{/Jahr}}{1760 \mbox{ h/Jahr}} \approx \eur{7,56}\mbox{/h}
-\end{eqnarray}
+\begin{eqnarray*}
+8 \mbox{ h/Tag} \cdot 20 \mbox{ Tage/Monat} = 160 \mbox{ h/Monat}\\
+\frac{\eur{1000} \mbox{/Monat}}{160 \mbox{ h/Monat}} = \eur{6,25}\mbox{/h}
+\end{eqnarray*}
 
-Es ergibt sich also ein Stundenlohn von \eur{7,56}. 
-Die Durchführungszeit des Projekts beträgt 70 Stunden. Für die Nutzung von Ressourcen\footnote{Räumlichkeiten, Arbeitsplatzrechner etc.} wird 
-ein pauschaler Stundensatz von \eur{15} angenommen. Für die anderen Mitarbeiter wird pauschal ein Stundenlohn von \eur{25} angenommen. 
-Eine Aufstellung der Kosten befindet sich in Tabelle~\ref{tab:Kostenaufstellung} und sie betragen insgesamt \eur{2739,20}.
+Es ergibt sich also ein Stundenlohn von \eur{6,25}. 
+Die Durchführungszeit des Projekts beträgt 70 Stunden. Für die Nutzung von
+Ressourcen\footnote{Räumlichkeiten, Arbeitsplatzrechner etc.} beträgt der
+Stundensatz pauschal \eur{15}. Für andere Mitarbeiter wird firmenintern
+eine pauschaler Stundenlohn von \eur{25} angenommen. Daraus ergibt sich eine
+Kostenaufstellung, die sich sich in
+Tabelle~\ref{tab:Kostenaufstellung}\nameref{tab:Kostenaufstellung} befindet.
+Die Gesamtkosten belaufen sich damit auf \eur{1687,50}.
 \tabelle{Kostenaufstellung}{tab:Kostenaufstellung}{Kostenaufstellung.tex}
-
 
 \subsubsection{Amortisationsdauer}
 \label{sec:Amortisationsdauer}
-\begin{itemize}
-	\item Welche monetären Vorteile bietet das Projekt (\zB Einsparung von Lizenzkosten, Arbeitszeitersparnis, bessere Usability, Korrektheit)?
-	\item Wann hat sich das Projekt amortisiert?
-\end{itemize}
+Im Nachfolgenden soll der Zeitpunkt ermittelt werden, bei dem sich die
+Entwicklung der Anwendung wirtschaftlich rechnet. Anhand des Wertes kann
+beurteilt werden, ob das Projektes aus wirtschaftlicher Sicht sinnvoll ist und
+sich zukünftig Kostenvorteile ergeben. Die Amortisationsdauer berechnet sich aus
+den Anschaffungskosten geteilt durch Kostenersparnis, die durch die Anwendung
+entsteht.
+
+Durch die Einführung eines Katalogs entsteht Sicherheit bei der Schätzung und
+der Gesamte Vorgang wird beschleunigt oder Entfällt teilweise ganz.
 
 \paragraph{Beispielrechnung (verkürzt)}
-Bei einer Zeiteinsparung von 10 Minuten am Tag für jeden der 25 Anwender und 220 Arbeitstagen im Jahr ergibt sich eine gesamte Zeiteinsparung von 
-\begin{eqnarray}
-25 \cdot 220 \mbox{ Tage/Jahr} \cdot 10 \mbox{ min/Tag} = 55000 \mbox{ min/Jahr} \approx 917 \mbox{ h/Jahr} 
-\end{eqnarray}
+Bei einer Zeiteinsparung von einer Stunde pro Schätzung und Woche für jeden der
+drei Mitarbeiter\footnote{an Schätzungen für öffentliche Ausschreibungen nehmen
+in der Regel drei Mitarbeiter teil} und 52 Wochen im Jahr, ergibt sich eine
+Zeitersparung von:
+\begin{eqnarray*}
+3 \cdot 1 \mbox{ h/Woche} \cdot 52 \mbox{ Wochen/Jahr} = 156 \mbox{ h/Jahr}
+\end{eqnarray*}
 
-Dadurch ergibt sich eine jährliche Einsparung von 
-\begin{eqnarray}
-917 \mbox{h} \cdot \eur{(25 + 15)}{\mbox{/h}} = \eur{36680}
-\end{eqnarray}
+Dadurch ergibt sich eine jährliche Einsparung von:
+\begin{eqnarray*}
+156 \mbox{h} \cdot \eur{(25 + 15)}{\mbox{/h}} = \eur{6240}
+\end{eqnarray*}
 
-Die Amortisationszeit beträgt also $\frac{\eur{2739,20}}{\eur{36680}\mbox{/Jahr}} \approx 0,07 \mbox{ Jahre} \approx 4 \mbox{ Wochen}$.
-
-
-\subsection{Nutzwertanalyse}
-\label{sec:Nutzwertanalyse}
-\begin{itemize}
-	\item Darstellung des nicht-monetären Nutzens (\zB Vorher-/Nachher-Vergleich anhand eines Wirtschaftlichkeitskoeffizienten). 
-\end{itemize}
-
-\paragraph{Beispiel}
-Ein Beispiel für eine Entscheidungsmatrix findet sich in Kapitel~\ref{sec:Architekturdesign}: \nameref{sec:Architekturdesign}.
-
+Die Amortisationszeit beträgt demnach:
+\begin{eqnarray*}
+\frac{\eur{1687,50}}{\eur{6240}\mbox{/Jahr}} \approx 0,27 \mbox{ Jahre} \approx
+14 \mbox{ Wochen}
+\end{eqnarray*}
 
 \subsection{Anwendungsfälle}
 \label{sec:Anwendungsfaelle}
-\begin{itemize}
-	\item Welche Anwendungsfälle soll das Projekt abdecken?
-	\item Einer oder mehrere interessante (!) Anwendungsfälle könnten exemplarisch durch ein Aktivitätsdiagramm oder eine \ac{EPK} detailliert beschrieben werden. 
-\end{itemize}
+Im Wesentlichen muss der Kalukulationskatalog zwei Anwendungsfälle abdecken.
 
-\paragraph{Beispiel}
-Ein Beispiel für ein Use Case-Diagramm findet sich im \Anhang{app:UseCase}.
+Zum einen soll er ans Nachschlagewerk während einer Kalkulation dienen. Dabei
+muss die Liste der Positionen gefiltert werden, um eine effektive Suche nach dem
+gewünschten Element zu sichern. Dieser Fall ist durch die prominente
+Filterfunktion bei jeder Listenansicht gewährleistet.
+
+Zum anderen muss es möglich sein, neue Kalkulationen mit den entsprechend
+nötigen Feldern und Positionen anzulegen. Hierbei ist ebenfalls darauf zu
+achten, dass der Anwendungsfall mit geringem zeitlichen Aufwand vollzogen werden
+kann. Eine Berechnung des Gesamtpreises über alle Aufwände hinweg, wird als
+selbstverständlich angesehen.
 
 
 \subsection{Qualitätsanforderungen}
 \label{sec:Qualitaetsanforderungen}
-\begin{itemize}
-	\item Welche Qualitätsanforderungen werden an die Anwendung gestellt (\zB hinsichtlich Performance, Usability, Effizienz \etc (siehe \citet{ISO9126}))?
-\end{itemize}
-
-
-\subsection{Lastenheft/Fachkonzept}
-\label{sec:Lastenheft}
-\begin{itemize}
-	\item Auszüge aus dem Lastenheft/Fachkonzept, wenn es im Rahmen des Projekts erstellt wurde.
-	\item Mögliche Inhalte: Funktionen des Programms (Muss/Soll/Wunsch), User Stories, Benutzerrollen
-\end{itemize}
-
-\paragraph{Beispiel}
-Ein Beispiel für ein Lastenheft findet sich im \Anhang{app:Lastenheft}. 
-
-\Zwischenstand{Analysephase}{Analyse}
+Es wurden keine spezifischen Qualitätsanforderungen an die Anwendung gestellt.
+Daher gelten die allgemeinen Anforderungen für Software wie sie in
+\citet{ISO9126} formuliert sind.
