@@ -35,7 +35,7 @@ header("Expires: Sun, 20 Dec 1987 20:00:00 GMT");
 				?>
 				<hr>
 				<p class="text-right copy">
-					<a href="http://creativecommons.org/publicdomain/zero/1.0/deed.de" target="_blank"><small>CC0</a> <a href="mailto:norman.paschke@dmk-ebusiness.de">Norman Paschke</a> &ndash; Version <?php echo $GLOBALS['version']?></small>
+					<small><a href="http://creativecommons.org/publicdomain/zero/1.0/deed.de" target="_blank">CC0</a> <a href="mailto:norman.paschke@dmk-ebusiness.de">Norman Paschke</a> &ndash; Version <?php echo $GLOBALS['version']?></small>
 				</p>
 			</div>
 		</div>

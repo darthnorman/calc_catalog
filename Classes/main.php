@@ -1,7 +1,7 @@
 <?php
 
 // version
-$version = 1.0;
+$version = "1.0";
 
 // page title default
 $defaultTitle = 'Kalkulationskatalog';
