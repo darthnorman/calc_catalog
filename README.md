@@ -22,4 +22,4 @@ hinzufügen kann, ohne dabei permanent andere Mitarbeiter einbeziehen zu müssen
 - Dateien auf den Webserver kopieren
 - neue Datenbank erstellen
 - /Classes/config_sample.php in config.php umbenennen und die Datenbankverbindung eintragen
-- data.sql importieren (optional)
+- data.sql importieren
